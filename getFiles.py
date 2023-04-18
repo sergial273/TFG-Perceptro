@@ -37,12 +37,16 @@ class getFiles:
                             board.push(move)
                             
                             # generar el tablero FEN en binario
-                            binary = self.fenToBinary(board.fen())  
+                            binary = self.fenToBinaryAllInSquares(board.fen())  
 
                             #evaluar FEN amb stockfish i guardar parell  
                             self.stockfish.set_fen_position(board.fen())
                             evaluation = self.stockfish.get_evaluation()
-                            print (evaluation)
+
+                            #fen = self.binaryToFenAllInSquares(binary)
+
+                            print(len(binary))
+                            #print(fen)
 
                         total += 1
                         
@@ -57,7 +61,7 @@ class getFiles:
                 print("-" * 50)  # Imprimir línea separador
 
         
-    def fenToBinary(self, fen):
+    def fenToBinarySeparatedCamps(self, fen):
         sections = fen.split(' ')
 
         binary = ""
@@ -128,7 +132,7 @@ class getFiles:
 
         return binary
 
-    def binaryToFen(self, binary):
+    def binaryToFenSeparatedCamps(self, binary):
         binary = str(binary)
         total = 1 #numero de caracters llegits
 
@@ -239,6 +243,162 @@ class getFiles:
 
         return result
 
+
+    def fenToBinaryAllInSquares(self,fen):
+        sections = fen.split(' ')
+
+        binary = ""
+        allbinary = ""
+        fil, col = 1, 1
+
+        #seguent jugador
+        turn = "0" if (sections[1] == "w") else "1"
+
+        for symbol in sections[0]:
+            binary=""
+            if symbol == '/':
+                fil += 1
+                pass
+            else:
+                if symbol.isdigit():
+                    #si es un espai en blanc
+                    for val in range(int(symbol)):
+                        
+                        binary += "000000"
+                        binary += turn+binary
+                        allbinary +=binary
+                        col += 1
+
+                else:
+                    pieceColour = "0" if symbol.isupper() else "1" #0 si es majuscula = blanc o 1 si es minuscula = negre
+                    pieceTypeFromSymbol = {
+                        'k': "110",
+                        'p': "001",
+                        'n': "010",
+                        'b': "011",
+                        'r': "100",
+                        'q': "101"
+                    }
+                    pieceType = pieceTypeFromSymbol[symbol.lower()]
+                    if symbol.lower() == "p": #e peó
+                        #mirar si es al pas
+                       
+                        enPassant = sections[3] if len(sections) > 3 else "-"
+                        enPassantBinary = ""
+
+                        if enPassant == "-":
+                            enPassantBinary = "0"
+                        else:
+                            #convertir la lletra
+                            column = int(ord(enPassant[0])-96) #retorna el valor en ASCII de 97 si es a, restem per tenir rang de 0-7
+                            
+                            #convertir el número
+                            row = int(enPassant[1])
+                            val = -1 if turn == "0" else +1
+                            row += val
+
+                            if column==col and row == fil:
+                                enPassantBinary = "1"
+                            else:
+                                enPassantBinary = "0"
+
+                        allbinary += turn+pieceColour+"0"+enPassantBinary+pieceType
+                        
+
+                    elif symbol.lower() == "r": #es torre
+                        #mirar drets enroc
+
+                        #drets d'enrocar
+                        castlingRights = sections[2] if len(sections) > 2 else "KQkq"
+                        castling="0"
+                        
+                        if "K" in castlingRights and col==8 and fil == 8:
+                            castling = "1"
+
+                        if "Q" in castlingRights and col==1 and fil == 8:
+                            castling = "1"
+
+                        if "k" in castlingRights and col==8 and fil == 1:
+                            castling = "1"
+
+                        if "q" in castlingRights and col==1 and fil == 1:
+                            castling = "1"
+
+                        allbinary += turn+pieceColour+castling+"0"+pieceType
+
+                    elif symbol.lower() == "k": #es rei
+                        castlingRights = sections[2] if len(sections) > 2 else "KQkq"
+                        castling = "0"
+                        if symbol.isupper() and ("K" in castlingRights or "Q" in castlingRights):
+                            castling = "1"
+
+                        if symbol.islower() and ("k" in castlingRights or "q" in castlingRights):
+                            castling = "1"
+
+                        allbinary += turn+pieceColour+castling+"0"+pieceType
+                        
+
+                    
+                    else: #es qualsevol altra peça
+
+                        allbinary += turn+pieceColour+"0"+"0"+pieceType
+                        
+                    col += 1              
+
+        return allbinary
+
+    def binaryToFenAllInSquares(self, binary):
+        
+        pieceTypeFromSymbol = {
+                        '110': "k",
+                        '001': "p",
+                        '010': "n",
+                        '011': "b",
+                        '100': "r",
+                        '101': "q"
+                    }
+        
+        empty = 0
+        fen = ""
+        jump = 0
+
+        for i in range(0, len(binary), 7):
+
+            jump += 1
+            
+            square = binary[i:i+7]
+            turn = square[0]
+            color = square[1]
+            castle = square[2]
+            enpassant = square[3]
+            piece = square[-3:]
+            
+            if piece in pieceTypeFromSymbol: #es peça
+                if empty != 0:
+                    fen += str(empty)
+
+                empty = 0
+
+                letter = pieceTypeFromSymbol[piece]
+
+                letter = letter.upper() if color=="0" else letter.lower()
+
+                if letter.lower() == "r":
+                    pass
+
+                
+            else: #espai en blanc
+                empty += 1
+
+            if jump == 8:
+                fen+="/"
+                jump = 0
+
+
+
+
+
+        
 
 print("starting")
 g = getFiles()
