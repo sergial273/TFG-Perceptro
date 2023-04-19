@@ -1,0 +1,16 @@
+Color(c): Blanc (0) || Negre(1)
+Torn(t): Blanc (0) || Negre(1)
+Drets enroc(d): Tot el que no sigui torre o rey(0) || Torre si no s'ha mogut, rey si no s'ha mogut i hi ha alguna torre(1)
+Captura al pas(p): Tot el que no sigui peo(0) || Si el peo es pot capturar al pas (nomes pot haver 1 alhora)(1)
+
+PEÇA -->bits de decisio - tipus de peça
+
+buit -->t000-000
+peo --> tc0p-001
+Cavall --> tc00-010
+Alfil --> tc00-011
+Torre --> tcd0-100
+Reina --> tc00-101
+Rei --> tcd0-110
+
+Total tauler 448 bits

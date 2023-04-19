@@ -1,0 +1,28 @@
+
+Tapa
+
+Índex
+
+1.Introducció
+	1.1 Context i motivació
+	1.2 Objectius
+	1.3 Metodologia
+2.Fonaments teòrics
+	2.1 Escacs: regles i conceptes bàsics
+	2.2 Xarxes neuronals: definició i tipus
+	2.3 Aprenentatge automàtic: algorismes i tècniques
+
+
+
+4.Disseny del model
+	4.1 Selecció de dades i característiques rellevants
+	4.2 Arquitectura de la xarxa neuronal
+	4.3 Entrenament i validació del model
+
+Resultats i avaluació
+	
+Conclusions i treballs futurs
+	
+Bibliografia i referències
+
+Annexos: Codi font, dades utilitzades, taules i gràfics addicionals, etc
