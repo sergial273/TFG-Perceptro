@@ -10,8 +10,8 @@ class getFiles:
         self.stockfish = Stockfish(path="./stockfish/stockfish-windows-2022-x86-64-avx2")
     
     def readNext(self):
-        filename = "test.pgn"
-        if filename in os.listdir(self.directory):
+        #filename = "test.pgn" and put if instead of for below
+        for filename in os.listdir(self.directory):
             total = 0
             totalBinaries = 0
             primer = True
@@ -36,19 +36,29 @@ class getFiles:
                             # Realizar el movimiento en el tablero
                             board.push(move)
                             
-                            # generar el tablero FEN en binario
+                            # generar el tablero FEN en binari
                             binary = self.fenToBinaryAllInSquares(board.fen())  
 
                             #evaluar FEN amb stockfish i guardar parell  
                             self.stockfish.set_fen_position(board.fen())
                             evaluation = self.stockfish.get_evaluation()
 
+                            #del binary tornar al fen per sabre si funciona correctament
                             fen = self.binaryToFenAllInSquares(binary)
 
-                            if totalBinaries == 1:
+                            fn =""
+                            blanks = 0
+                            for ele in board.fen():
+                                if ele == " ":
+                                    blanks += 1
+                                    if blanks == 4:
+                                        break
+                                fn +=ele
+
+                            if fen != fn:
                                 print(board.fen())
-                                print(len(binary))
                                 print(fen)
+                                break
 
                         total += 1
 
@@ -281,19 +291,20 @@ class getFiles:
                     pieceType = pieceTypeFromSymbol[symbol.lower()]
                     if symbol.lower() == "p": #e peó
                         #mirar si es al pas
-                       
+                        
                         enPassant = sections[3] if len(sections) > 3 else "-"
                         enPassantBinary = ""
 
                         if enPassant == "-":
                             enPassantBinary = "0"
+                            
                         else:
                             #convertir la lletra
                             column = int(ord(enPassant[0])-96) #retorna el valor en ASCII de 97 si es a, restem per tenir rang de 0-7
                             
                             #convertir el número
                             row = int(enPassant[1])
-                            val = -1 if turn == "0" else +1
+                            val = -2 if turn == "0" else +2
                             row += val
 
                             if column==col and row == fil:
@@ -305,9 +316,10 @@ class getFiles:
 
                     elif symbol.lower() == "r": #es torre
                         #mirar drets enroc
-
+                        
                         #drets d'enrocar
                         castlingRights = sections[2] if len(sections) > 2 else "KQkq"
+                        
                         castling="0"
                         
                         if "K" in castlingRights and col==8 and fil == 8:
@@ -321,7 +333,7 @@ class getFiles:
 
                         if "q" in castlingRights and col==1 and fil == 1:
                             castling = "1"
-
+                        
                         allbinary += turn+pieceColour+castling+"0"+pieceType
 
                     elif symbol.lower() == "k": #es rei
@@ -340,7 +352,8 @@ class getFiles:
 
                         allbinary += turn+pieceColour+"0"+"0"+pieceType
                     
-                    col += 1   
+                    col += 1
+               
 
         return allbinary
 
@@ -357,10 +370,10 @@ class getFiles:
         
         empty = 0
         fen = ""
-        jump = 0
+        jump = 1
         fil, col = 1,1
         finalEnPassant="-"
-        finalCastle = "-"
+        finalCastle = ""
 
         for i in range(0, len(binary), 7):
 
@@ -374,6 +387,7 @@ class getFiles:
             piece = square[-3:]
             
             if piece in pieceTypeFromSymbol: #es peça
+                
                 if empty != 0:
                     fen += str(empty)
 
@@ -384,23 +398,21 @@ class getFiles:
                 letter = letter.upper() if color=="0" else letter.lower()
 
                 if letter.lower() == "r":
-                    result = ""
-                    print("TORRE ",col,fil, letter,finalCastle)
-                    if col==8 and fil==8 and letter.isupper():
-                        result += "K"
-                    if col==1 and fil==8 and letter.isupper():
-                        result += "Q"
-                    if col==8 and fil==1 and letter.islower():
-                        result += "k"
-                    if col==1 and fil==1 and letter.islower():
-                        result += "q"
+
+                    if col==8 and fil==8 and letter.isupper() and int(castle):
+                        finalCastle += "K"
+                    if col==1 and fil==8 and letter.isupper() and int(castle):
+                        finalCastle += "Q"
+                    if col==8 and fil==1 and letter.islower() and int(castle):
+                        finalCastle += "k"
+                    if col==1 and fil==1 and letter.islower() and int(castle):
+                        finalCastle += "q"
                     
-                    if result != "":
-                        finalCastle += result
                 
                 elif letter.lower() == "p":
                     if enpassant == "1":
-                        finalEnPassant = str(chr(col+96))+str(fil)
+                        val = +2 if turn == "0" else -2
+                        finalEnPassant = str(chr(col+96))+str(fil+val)
 
                 fen += letter
 
@@ -413,16 +425,25 @@ class getFiles:
                 if empty != 0:
                     fen += str(empty)
                 empty = 0
-
-                fen+="/"
+                if i < 441:
+                    fen+="/"
                 jump = 0
 
                 fil += 1
-                col = 1
-            print(col,fil)
+                col = 0
+            
             col += 1
             jump += 1
 
+
+        if finalCastle == "":
+                    finalCastle = "-"
+        else:
+            order = []
+            for letter in finalCastle:
+                order.append(letter)
+            order.sort()
+            finalCastle = ''.join(order)
 
         turn = "w" if turn == "0" else "b"
         fen += " " + turn + " " + finalCastle + " " + finalEnPassant
@@ -440,7 +461,7 @@ class getFiles:
 
 print("starting")
 g = getFiles()
-#g.readNext()
-binary = g.fenToBinaryAllInSquares("rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq - 0 1")
-print(g.binaryToFenAllInSquares(binary))
+g.readNext()
+#fen = g.fenToBinaryAllInSquares("rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq - 0 1")
+#print(g.binaryToFenAllInSquares(fen))
 print("end")
