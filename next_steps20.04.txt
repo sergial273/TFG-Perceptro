@@ -8,6 +8,7 @@ i que haga lo siguiente:
 
 -Quiero que si se pulsa una tecla en concreto el entrenamiento pueda parar i se guarde toda la red( configuracion y pesos) para el posterior entreno de esta y que al ejecutar-la puedas entrar pesos y configuracion por si tengo una red guardada y quiero seguir con ella
 
+-Si es posible, cuando acabe el entrenamiento que envie un correo al mail sergi.alberich@gmail.com
 Piensa que tienes unos 2000000 de datos para entrenar i evaluar la red. Explica detalladamente todo lo que haces.
 
 
