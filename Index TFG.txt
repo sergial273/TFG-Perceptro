@@ -26,3 +26,8 @@ Conclusions i treballs futurs
 Bibliografia i referències
 
 Annexos: Codi font, dades utilitzades, taules i gràfics addicionals, etc
+
+
+
+
+genera un indice para un TFG sobre la explicabilidad de los movimientos de ajedrez a traves de la creacion de una red neuronal
