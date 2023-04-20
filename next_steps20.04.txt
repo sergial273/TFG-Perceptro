@@ -1,15 +1,16 @@
 preguntar chatGPT:
-Quiero una red nuronal (perceptron multicapa con backpropagation) i quiero entrenar-la usando python. Quiero que expliques el codigo, cada decision i que hace cada variable i metodo detalladamente
-i que haga lo siguiente:
--Tengo un string de 448 valores (unos y zeros) y quiero separarlo en 64 numeros de 7 bits para la entrada.
- A cada uno de estos bits les acompaña un valor decimal entre -1 i 1 con el formato siguiente 0.000 (3 decimales), este numero serà para evaluar la salida i se cogera de otra lista
+Quiero una red nuronal (perceptron multicapa con backpropagation) i quiero entrenar-la usando python. Quiero que expliques el codigo, cada decision i que hace cada variable i metodo
+i que haga lo siguiente (puedes utilizar la libreria que quieras, como Teras):
+
+-las entradas seran 64, cada una serà un numer de 7 bits, la salida sera un numero entre -1 i 1 también dado
 
 -A continuacion quiero que montes la red neuronal, con su entrenamiento y muestros los resultados obtenidos
 
--Quiero que si se pulsa una tecla en concreto el entrenamiento pueda parar i se guarde toda la red( configuracion y pesos) para el posterior entreno de esta y que al ejecutar-la puedas entrar pesos y configuracion por si tengo una red guardada y quiero seguir con ella
-
 -Si es posible, cuando acabe el entrenamiento que envie un correo al mail sergial273@gmail.com
-Piensa que tienes unos 2000000 de datos para entrenar i evaluar la red. Explica detalladamente todo lo que haces.
+
+Piensa que tienes unos 2000000 de datos para entrenar i evaluar la red.
+
+Además, añade la posibilidad de guardar los pesos una vez acabe el entrenamiento.
 
 
 

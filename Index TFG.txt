@@ -13,15 +13,15 @@ Tapa
 	2.3 Aprenentatge automàtic: algorismes i tècniques
 
 
-
-4.Disseny del model
-	4.1 Selecció de dades i característiques rellevants
-	4.2 Arquitectura de la xarxa neuronal
-	4.3 Entrenament i validació del model
+X.Metodologia
+	X.1 Disseny del model de xarxa neuronal
+	X.2 Selecció de la base de dades de partides d'escacs
+	X.3 Procediment d'entrenament i validació del model
+	X.4 Anàlisi de resultats
 
 Resultats i avaluació
 	
-Conclusions i treballs futurs
+Conclusions
 	
 Bibliografia i referències
 
