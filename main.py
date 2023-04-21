@@ -3,6 +3,21 @@ from keras.models import Sequential
 from keras.layers import Dense, Flatten
 from keras.optimizers import SGD
 
+
+
+# Abrir el archivo csv
+with open('tu_archivo.csv', 'r') as file:
+    reader = csv.reader(file)
+
+    # Iterar sobre cada fila del archivo
+    for row in reader:
+        # Obtener la cadena de caracteres y el campo 'value' como objeto literal de Python
+        value_literal = ast.literal_eval(row[1])
+        # Si el tipo es 'cp', imprimir la cadena de caracteres y el valor
+        if value_literal['type'] == 'cp':
+            print(row[0], value_literal['value'])
+
+            
 # leer los datos desde el archivo
 filename = 'datos.txt'
 with open(filename, 'r') as f:
