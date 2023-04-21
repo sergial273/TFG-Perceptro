@@ -1,0 +1,23 @@
+preguntar chatGPT:
+Quiero una red nuronal (perceptron multicapa con backpropagation) i quiero entrenar-la usando python. Quiero que expliques el codigo, cada decision i que hace cada variable i metodo
+i que haga lo siguiente (puedes utilizar la libreria que quieras, como Teras):
+
+-las entradas seran 64, cada una serà un numer de 7 bits, la salida sera un numero entre -1 i 1 también dado
+
+-A continuacion quiero que montes la red neuronal, con su entrenamiento y muestros los resultados obtenidos
+
+-Si es posible, cuando acabe el entrenamiento que envie un correo al mail sergial273@gmail.com
+
+Piensa que tienes unos 2000000 de datos para entrenar i evaluar la red.
+
+Además, añade la posibilidad de guardar los pesos una vez acabe el entrenamiento.
+
+
+
+A continuació:
+-correu Agusti ensenyant com completaré l'index
+-Deixar red neuronal entrenant
+-Començar a escriure
+-Concerar reunio per dijous on:
+	-Model neuronal ha d'estar entrenat
+	-Bona part del index presentat (que conte el que es pot escriure) escrit
