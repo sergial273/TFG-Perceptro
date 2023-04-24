@@ -10,7 +10,7 @@ with open('PosicionsEvaluacions.csv', 'r') as file:
     reader = csv.reader(file)
     
     first=True
-    numEvaluacions = 200000
+    numEvaluacions = 1500000
     TrainingTuples = []
     i = 0
 
@@ -71,7 +71,7 @@ for line in TrainingTuples:
 outputs = np.array(outputs,dtype=float)
 inputs = np.array(inputs)
 
-
+print("Started training:")
 
 # definir la red neuronal
 model = Sequential()
@@ -83,10 +83,10 @@ model.add(Dense(16, activation='sigmoid'))
 model.add(Dense(1, activation='sigmoid'))
 
 # compilar la red neuronal
-model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
+model.compile(loss='binary_crossentropy', optimizer='sgd', metrics=['accuracy'])
 
 # entrenar la red neuronal
-model.fit(inputs, outputs, epochs=20, batch_size=32, verbose=1)
+model.fit(inputs, outputs, epochs=500, batch_size=32, verbose=1)
 
 # Guardar el modelo en un archivo
 model.save('red_neuronal.h5')
@@ -95,6 +95,7 @@ model.save('red_neuronal.h5')
 model.save_weights('pesos.h5')
 
 
+print("Started evaluation:")
 #EVALUAR
 with open('PosicionsEvaluacions.csv', 'r') as file:
     reader = csv.reader(file)
@@ -107,8 +108,8 @@ with open('PosicionsEvaluacions.csv', 'r') as file:
     # Iterar sobre cada fila del archivo
     for row in reader:
         if not first and i < numEvaluacions:
-            for line in EvaluatingTuples:
-                if line[0] != row[0]:
+            for line in TrainingTuples:
+                #if line[0] != row[0]:
                     # Obtener la cadena de caracteres y el campo 'value' como objeto literal de Python
                     value_literal = ast.literal_eval(row[1])
                     # Si el tipo es 'cp', imprimir la cadena de caracteres y el valor
@@ -141,7 +142,7 @@ for line in EvaluatingTuples:
         eval = 1
     elif eval < -1:
         eval = -1
-
+    
     EvaluatingOutputs.append(eval)
 
 EvaluatingOutputs = np.array(EvaluatingOutputs,dtype=float)
