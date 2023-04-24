@@ -26,6 +26,7 @@ with open('PosicionsEvaluacions.csv', 'r') as file:
 
         first = False
 
+"""
 #Guardar los 'numEvaluacions' valores leidos en un csv para saber con que partidas hemos entrenado lar red
 # Open the file in write mode
 with open('TrainingPositions.csv', mode='w', newline='') as file:
@@ -150,7 +151,7 @@ EvaluatingInputs = np.array(EvaluatingInputs)
 loss, accuracy = model.evaluate(EvaluatingInputs, EvaluatingOutputs)
 print('Accuracy: %.2f' % (accuracy*100))
 
-
+"""
 
 """
 # Guardar el modelo en un archivo
