@@ -191,4 +191,18 @@ digit = np.reshape(digit, (-1, 784))
 digit = digit.astype('float32') / 255
 
 MLP.predict(digit, verbose=0)
+
+# Guardar el modelo en un archivo
+model.save('red_neuronal.h5')
+
+# Guardar los pesos entrenados en un archivo separado
+model.save_weights('pesos.h5')
+
+
+# Cargar el modelo desde el archivo
+from keras.models import load_model
+modelo = load_model('red_neuronal.h5')
+
+# Cargar los pesos entrenados desde el archivo
+modelo.load_weights('pesos.h5')
 """
