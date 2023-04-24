@@ -82,10 +82,10 @@ inputs = inputs.astype('float32') / 127
 
 MLP = Sequential()
 MLP.add(InputLayer(input_shape=(64, ))) # input layer
-MLP.add(Dense(128, activation='relu')) # hidden layer 1
-MLP.add(Dense(64, activation='relu')) # hidden layer 2
-MLP.add(Dense(32, activation='relu')) # hidden layer 2
-MLP.add(Dense(16, activation='relu')) # hidden layer 2
+MLP.add(Dense(128, activation='sigmoid')) # hidden layer 1
+MLP.add(Dense(64, activation='sigmoid')) # hidden layer 2
+MLP.add(Dense(32, activation='sigmoid')) # hidden layer 2
+MLP.add(Dense(16, activation='sigmoid')) # hidden layer 2
 MLP.add(Dense(7, activation='sigmoid')) # output layer
 
 # summary
