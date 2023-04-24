@@ -1,0 +1,33 @@
+
+Tapa
+
+Índex
+
+1.Introducció
+	1.1 Context i motivació
+	1.2 Objectius
+	1.3 Metodologia
+2.Fonaments teòrics
+	2.1 Escacs: regles i conceptes bàsics
+	2.2 Xarxes neuronals: definició i tipus
+	2.3 Aprenentatge automàtic: algorismes i tècniques
+
+
+X.Metodologia
+	X.1 Disseny del model de xarxa neuronal
+	X.2 Selecció de la base de dades de partides d'escacs
+	X.3 Procediment d'entrenament i validació del model
+	X.4 Anàlisi de resultats
+
+Resultats i avaluació
+	
+Conclusions
+	
+Bibliografia i referències
+
+Annexos: Codi font, dades utilitzades, taules i gràfics addicionals, etc
+
+
+
+
+genera un indice para un TFG sobre la explicabilidad de los movimientos de ajedrez a traves de la creacion de una red neuronal
