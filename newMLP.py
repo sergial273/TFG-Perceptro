@@ -6,6 +6,7 @@ from keras.utils import to_categorical
 from keras.models import Sequential
 from keras.layers import InputLayer
 from keras.layers import Dense
+import keras.optimizers
 
 # Abrir el archivo csv y leer los primeros 'numEvaluacions' valores
 with open('PosicionsEvaluacions.csv', 'r') as file:
@@ -93,8 +94,9 @@ MLP.summary()
 
 
 # optimization
+optimizer=keras.optimizers.Adam(learning_rate=0.05)
 MLP.compile(loss='categorical_crossentropy',
-            optimizer='adam',
+            optimizer=optimizer,
             metrics=['accuracy'])
 
 # train (fit)

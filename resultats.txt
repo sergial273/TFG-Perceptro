@@ -1,0 +1,109 @@
+MLP = Sequential()
+MLP.add(InputLayer(input_shape=(64, ))) # input layer
+MLP.add(Dense(128, activation='relu')) # hidden layer 1
+MLP.add(Dense(64, activation='relu')) # hidden layer 2
+MLP.add(Dense(32, activation='relu')) # hidden layer 2
+MLP.add(Dense(16, activation='relu')) # hidden layer 2
+MLP.add(Dense(7, activation='sigmoid')) # output layer
+
+Result:
+Epoch 1/20
+15625/15625 [==============================] - 30s 2ms/step - loss: 4286405120.0000 - accuracy: 0.6166
+Epoch 2/20
+15625/15625 [==============================] - 24s 2ms/step - loss: 116574117888.0000 - accuracy: 0.6161
+Epoch 3/20
+15625/15625 [==============================] - 23s 1ms/step - loss: 803434463232.0000 - accuracy: 0.6158
+Epoch 4/20
+15625/15625 [==============================] - 23s 1ms/step - loss: 3247910944768.0000 - accuracy: 0.6159
+Epoch 5/20
+15625/15625 [==============================] - 25s 2ms/step - loss: 9628450553856.0000 - accuracy: 0.6153
+Epoch 6/20
+15625/15625 [==============================] - 25s 2ms/step - loss: 23108419321856.0000 - accuracy: 0.6154
+Epoch 7/20
+15625/15625 [==============================] - 23s 2ms/step - loss: 48078568554496.0000 - accuracy: 0.6153
+Epoch 8/20
+15625/15625 [==============================] - 23s 1ms/step - loss: 92321915863040.0000 - accuracy: 0.6154
+Epoch 9/20
+15625/15625 [==============================] - 23s 1ms/step - loss: 163582989828096.0000 - accuracy: 0.6151
+Epoch 10/20
+15625/15625 [==============================] - 24s 2ms/step - loss: 271197505847296.0000 - accuracy: 0.6152
+Epoch 11/20
+15625/15625 [==============================] - 23s 1ms/step - loss: 430579967328256.0000 - accuracy: 0.6148
+Epoch 12/20
+15625/15625 [==============================] - 23s 1ms/step - loss: 658819461939200.0000 - accuracy: 0.6144
+Epoch 13/20
+15625/15625 [==============================] - 25s 2ms/step - loss: 966537695461376.0000 - accuracy: 0.6149
+Epoch 14/20
+15625/15625 [==============================] - 26s 2ms/step - loss: 1396414663884800.0000 - accuracy: 0.6151
+Epoch 15/20
+15625/15625 [==============================] - 35s 2ms/step - loss: 1947778406154240.0000 - accuracy: 0.6150
+Epoch 16/20
+15625/15625 [==============================] - 29s 2ms/step - loss: 2680570156941312.0000 - accuracy: 0.6149
+Epoch 17/20
+15625/15625 [==============================] - 27s 2ms/step - loss: 3584870957711360.0000 - accuracy: 0.6148
+Epoch 18/20
+15625/15625 [==============================] - 27s 2ms/step - loss: 4751511582146560.0000 - accuracy: 0.6146
+Epoch 19/20
+15625/15625 [==============================] - 26s 2ms/step - loss: 6170215515684864.0000 - accuracy: 0.6146
+Epoch 20/20
+15625/15625 [==============================] - 26s 2ms/step - loss: 7954997228601344.0000 - accuracy: 0.6138
+Test loss: 8942687772213248.0
+Test accuracy: 0.6870660185813904
+
+
+
+------------------------------------------------
+
+
+MLP = Sequential()
+MLP.add(InputLayer(input_shape=(64, ))) # input layer
+MLP.add(Dense(128, activation='sigmoid')) # hidden layer 1
+MLP.add(Dense(64, activation='sigmoid')) # hidden layer 2
+MLP.add(Dense(32, activation='sigmoid')) # hidden layer 2
+MLP.add(Dense(16, activation='sigmoid')) # hidden layer 2
+MLP.add(Dense(7, activation='sigmoid')) # output layer
+
+
+Epoch 1/20
+15625/15625 [==============================] - 28s 2ms/step - loss: 1.1050 - accuracy: 0.6871
+Epoch 2/20
+15625/15625 [==============================] - 27s 2ms/step - loss: 1.8107 - accuracy: 0.6871
+Epoch 3/20
+15625/15625 [==============================] - 27s 2ms/step - loss: 2.5716 - accuracy: 0.6871
+Epoch 4/20
+15625/15625 [==============================] - 27s 2ms/step - loss: 3.3299 - accuracy: 0.6871
+Epoch 5/20
+15625/15625 [==============================] - 26s 2ms/step - loss: 4.0868 - accuracy: 0.6871
+Epoch 6/20
+15625/15625 [==============================] - 27s 2ms/step - loss: 4.8339 - accuracy: 0.6871
+Epoch 7/20
+15625/15625 [==============================] - 27s 2ms/step - loss: 5.5946 - accuracy: 0.6871
+Epoch 8/20
+15625/15625 [==============================] - 24s 2ms/step - loss: 6.3611 - accuracy: 0.6871
+Epoch 9/20
+15625/15625 [==============================] - 25s 2ms/step - loss: 7.0964 - accuracy: 0.6871
+Epoch 10/20
+15625/15625 [==============================] - 25s 2ms/step - loss: 7.8493 - accuracy: 0.6871
+Epoch 11/20
+15625/15625 [==============================] - 27s 2ms/step - loss: 8.5867 - accuracy: 0.6871
+Epoch 12/20
+15625/15625 [==============================] - 26s 2ms/step - loss: 9.3306 - accuracy: 0.6871
+Epoch 13/20
+15625/15625 [==============================] - 29s 2ms/step - loss: 10.0853 - accuracy: 0.6871
+Epoch 14/20
+15625/15625 [==============================] - 26s 2ms/step - loss: 10.8432 - accuracy: 0.6871
+Epoch 15/20
+15625/15625 [==============================] - 26s 2ms/step - loss: 11.5870 - accuracy: 0.6871
+Epoch 16/20
+15625/15625 [==============================] - 26s 2ms/step - loss: 12.3392 - accuracy: 0.6871
+Epoch 17/20
+15625/15625 [==============================] - 26s 2ms/step - loss: 13.0861 - accuracy: 0.6871
+Epoch 18/20
+15625/15625 [==============================] - 27s 2ms/step - loss: 13.8172 - accuracy: 0.6871
+Epoch 19/20
+15625/15625 [==============================] - 24s 2ms/step - loss: 14.5809 - accuracy: 0.6871
+Epoch 20/20
+15625/15625 [==============================] - 25s 2ms/step - loss: 15.3335 - accuracy: 0.6871
+Test loss: 15.709729194641113
+Test accuracy: 0.6870660185813904
+
