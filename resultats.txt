@@ -107,3 +107,16 @@ Epoch 20/20
 Test loss: 15.709729194641113
 Test accuracy: 0.6870660185813904
 
+Nova codificacio
+Epoch 20/20
+15625/15625 [==============================] - 40s 3ms/step - loss: 12.1293 - accuracy: 0.6233
+Test loss: 12.41679859161377
+Test accuracy: 0.6232584714889526
+
+Amb nova codificacio i nomes 64 d'entrada i 9 de sortida
+Epoch 20/20
+15625/15625 [==============================] - 21s 1ms/step - loss: 21.5264 - accuracy: 0.6273
+Test loss: 22.05126190185547
+Test accuracy: 0.6267595291137695
+
+Primera codificacio i nomes 64 d'entrada i 9 de sortida (DEIXARLA MES EPOCHS)

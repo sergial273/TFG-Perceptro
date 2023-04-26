@@ -54,12 +54,14 @@ for line in TrainingTuples:
 
     eval = abs(eval)
     output_bin = []
-    interv1 = 1 if eval < 0.5 else 0
-    interv2 = 1 if (eval >= 0.5  and eval < 1.5) else 0
-    interv3 = 1 if (eval >= 1.5  and eval < 2.5) else 0
-    interv4 = 1 if (eval >= 2.5  and eval < 3.5) else 0
-    interv5 = 1 if (eval >= 3.5  and eval < 4.5) else 0
-    interv6 = 1 if (eval >= 4.5) else 0
+    interv1 = 1 if eval < 0.25 else 0
+    interv2 = 1 if (eval >= 0.25  and eval < 0.5) else 0
+    interv3 = 1 if (eval >= 0.5  and eval < 1) else 0
+    interv4 = 1 if (eval >= 1  and eval < 1.5) else 0
+    interv5 = 1 if (eval >= 1.5  and eval < 2.5) else 0
+    interv6 = 1 if (eval >= 2.5  and eval < 3.5) else 0
+    interv7 = 1 if (eval >= 3.5  and eval < 4.5) else 0
+    interv8 = 1 if (eval >= 4.5) else 0
 
     output_bin.append(signe)
     output_bin.append(interv1)
@@ -68,6 +70,8 @@ for line in TrainingTuples:
     output_bin.append(interv4)
     output_bin.append(interv5)
     output_bin.append(interv6)
+    output_bin.append(interv7)
+    output_bin.append(interv8)
 
     arr1 = np.array(output_bin, dtype=float)
     
@@ -86,7 +90,7 @@ MLP.add(InputLayer(input_shape=(64, ))) # input layer
 #MLP.add(Dense(64, activation='sigmoid')) # hidden layer 2
 #MLP.add(Dense(32, activation='sigmoid')) # hidden layer 2
 #MLP.add(Dense(16, activation='sigmoid')) # hidden layer 2
-MLP.add(Dense(7, activation='sigmoid')) # output layer
+MLP.add(Dense(9, activation='sigmoid')) # output layer
 
 # summary
 MLP.summary()
@@ -153,12 +157,14 @@ for line in TrainingTuples:
 
     eval = abs(eval)
     output_bin = []
-    interv1 = 1 if eval < 0.5 else 0
-    interv2 = 1 if (eval >= 0.5  and eval < 1.5) else 0
-    interv3 = 1 if (eval >= 1.5  and eval < 2.5) else 0
-    interv4 = 1 if (eval >= 2.5  and eval < 3.5) else 0
-    interv5 = 1 if (eval >= 3.5  and eval < 4.5) else 0
-    interv6 = 1 if (eval >= 4.5) else 0
+    interv1 = 1 if eval < 0.25 else 0
+    interv2 = 1 if (eval >= 0.25  and eval < 0.5) else 0
+    interv3 = 1 if (eval >= 0.5  and eval < 1) else 0
+    interv4 = 1 if (eval >= 1  and eval < 1.5) else 0
+    interv5 = 1 if (eval >= 1.5  and eval < 2.5) else 0
+    interv6 = 1 if (eval >= 2.5  and eval < 3.5) else 0
+    interv7 = 1 if (eval >= 3.5  and eval < 4.5) else 0
+    interv8 = 1 if (eval >= 4.5) else 0
 
     output_bin.append(signe)
     output_bin.append(interv1)
@@ -167,6 +173,8 @@ for line in TrainingTuples:
     output_bin.append(interv4)
     output_bin.append(interv5)
     output_bin.append(interv6)
+    output_bin.append(interv7)
+    output_bin.append(interv8)
 
     arr1Test = np.array(output_bin, dtype=float)
     
