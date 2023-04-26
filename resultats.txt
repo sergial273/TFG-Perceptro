@@ -119,8 +119,14 @@ Epoch 20/20
 Test loss: 22.05126190185547
 Test accuracy: 0.6267595291137695
 
-Primera codificacio i nomes 64 d'entrada i 9 de sortida (DEIXARLA MES EPOCHS)
+Primera codificacio i nomes 64 d'entrada i 9 de sortida 20 epochs
 Epoch 20/20
 15625/15625 [==============================] - 19s 1ms/step - loss: 26.8136 - accuracy: 0.6876
 Test loss: 27.47330093383789
 Test accuracy: 0.6877700090408325
+
+Primera codificacio i nomes 64 d'entrada i 9 de sortida 500 epochs (amb 50 hagues anat be)
+Epoch 500/500
+15625/15625 [==============================] - 16s 1ms/step - loss: 612.3333 - accuracy: 0.6891
+Test loss: 612.8189086914062
+Test accuracy: 0.6891559958457947

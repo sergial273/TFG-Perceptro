@@ -99,7 +99,7 @@ MLP.compile(loss='categorical_crossentropy',
 
 # train (fit)
 MLP.fit(inputs, outputs, 
-        epochs=20, batch_size=128) #was 20 epochs
+        epochs=500, batch_size=128) #was 20 epochs
 
 
 
