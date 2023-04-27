@@ -1,0 +1,108 @@
+CODIFICACIO: 16 bits per a intervals 8 per negatius i 8 per positius (si no es marca cap es 0)
+
+
+MLP = Sequential()
+MLP.add(InputLayer(input_shape=(64, ))) # input layer
+MLP.add(Dense(128, activation='sigmoid')) # hidden layer 1 "provar relu"
+MLP.add(Dense(64, activation='sigmoid')) # hidden layer 2 "provar relu"
+MLP.add(Dense(32, activation='sigmoid')) # hidden layer 3 "provar relu"
+MLP.add(Dense(16, activation='sigmoid')) # output layer "provar softmax"
+
+interv1pos = 1 if eval < 0.25 else 0
+interv2pos = 1 if (eval >= 0.25  and eval < 0.5) else 0
+interv3pos = 1 if (eval >= 0.5  and eval < 1) else 0
+interv4pos = 1 if (eval >= 1  and eval < 1.5) else 0
+interv5pos = 1 if (eval >= 1.5  and eval < 2.5) else 0
+interv6pos = 1 if (eval >= 2.5  and eval < 3.5) else 0
+interv7pos = 1 if (eval >= 3.5  and eval < 4.5) else 0
+interv8pos = 1 if (eval >= 4.5) else 0
+interv1neg = 1 if (eval > -0.25 and eval<0) else 0
+interv2neg = 1 if (eval <= -0.25  and eval > -0.5) else 0
+interv3neg = 1 if (eval <= -0.5  and eval > -1) else 0
+interv4neg = 1 if (eval <= -1  and eval > -1.5) else 0
+interv5neg = 1 if (eval <= -1.5  and eval > -2.5) else 0
+interv6neg = 1 if (eval <= -2.5  and eval > -3.5) else 0
+interv7neg = 1 if (eval <= -3.5  and eval > -4.5) else 0
+interv8neg = 1 if (eval <= -4.5) else 0
+//Primer test amb aquesta, he canviat per a que el 0 quedi codificat i no es marqui sempre que sigui negatiu la primera
+Epoch 20/20
+15625/15625 [==============================] - 38s 2ms/step - loss: 51.9691 - accuracy: 0.9115
+Test loss: 42.866798400878906
+Test accuracy: 0.852977991104126
+
+
+
+
+Arreglada codificacio (16 bits per intervals i si cap a 1 es 0 la eval)
+No valia la pena, al voltant del 60% d'encert
+MLP = Sequential()
+MLP.add(InputLayer(input_shape=(64, ))) # input layer
+MLP.add(Dense(128, activation='sigmoid')) # hidden layer 1 "provar relu"
+MLP.add(Dense(64, activation='sigmoid')) # hidden layer 2 "provar relu"
+MLP.add(Dense(32, activation='sigmoid')) # hidden layer 3 "provar relu"
+MLP.add(Dense(16, activation='sigmoid')) # output layer "provar softmax"
+
+
+Nova codificacio arreglada (17 bits, 8 pels negatius, 8 pels positius i 1 pel 0)
+    MLP = Sequential()
+    MLP.add(InputLayer(input_shape=(64, ))) # input layer
+    MLP.add(Dense(128, activation='sigmoid')) # hidden layer 1 "provar relu"
+    MLP.add(Dense(64, activation='sigmoid')) # hidden layer 2 "provar relu"
+    MLP.add(Dense(32, activation='sigmoid')) # hidden layer 3 "provar relu"
+    MLP.add(Dense(16, activation='sigmoid')) # output layer "provar softmax"
+
+    zero = 1 if eval == 0 else 0
+    interv1pos = 1 if (eval < 0.25 and eval>0) else 0
+    interv2pos = 1 if (eval >= 0.25  and eval < 0.5) else 0
+    interv3pos = 1 if (eval >= 0.5  and eval < 1) else 0
+    interv4pos = 1 if (eval >= 1  and eval < 1.5) else 0
+    interv5pos = 1 if (eval >= 1.5  and eval < 2.5) else 0
+    interv6pos = 1 if (eval >= 2.5  and eval < 3.5) else 0
+    interv7pos = 1 if (eval >= 3.5  and eval < 4.5) else 0
+    interv8pos = 1 if (eval >= 4.5) else 0
+    interv1neg = 1 if (eval > -0.25 and eval<0) else 0
+    interv2neg = 1 if (eval <= -0.25  and eval > -0.5) else 0
+    interv3neg = 1 if (eval <= -0.5  and eval > -1) else 0
+    interv4neg = 1 if (eval <= -1  and eval > -1.5) else 0
+    interv5neg = 1 if (eval <= -1.5  and eval > -2.5) else 0
+    interv6neg = 1 if (eval <= -2.5  and eval > -3.5) else 0
+    interv7neg = 1 if (eval <= -3.5  and eval > -4.5) else 0
+    interv8neg = 1 if (eval <= -4.5) else 0
+
+Epoch 20/20
+15625/15625 [==============================] - 34s 2ms/step - loss: 1.0939 - accuracy: 0.5804
+Test loss: 0.9932877421379089
+Test accuracy: 0.7008305191993713
+
+-----------------------------------------------------------------------------------------------
+MLP = Sequential()
+MLP.add(InputLayer(input_shape=(64, ))) # input layer
+MLP.add(Dense(128, activation='sigmoid')) # hidden layer 1 "provar relu default sigmoid"
+MLP.add(Dense(64, activation='sigmoid')) # hidden layer 2 "provar relu default sigmoid"
+MLP.add(Dense(32, activation='sigmoid')) # hidden layer 3 "provar relu default sigmoid"
+MLP.add(Dense(8, activation='sigmoid')) # output layer "provar softmax default sigmoid"
+
+    interv1pos = 1 if eval < 0.25 else 0
+    eval = abs(eval)
+    interv2pos = 1 if (eval >= 0.25  and eval < 0.5) else 0
+    interv3pos = 1 if (eval >= 0.5  and eval < 1) else 0
+    interv4pos = 1 if (eval >= 1  and eval < 1.5) else 0
+    interv5pos = 1 if (eval >= 1.5  and eval < 2.5) else 0
+    interv6pos = 1 if (eval >= 2.5  and eval < 3.5) else 0
+    interv7pos = 1 if (eval >= 3.5  and eval < 4.5) else 0
+    interv8pos = 1 if (eval >= 4.5) else 0
+   
+
+    output_bin.append(interv1pos)
+    output_bin.append(interv2pos)
+    output_bin.append(interv3pos)
+    output_bin.append(interv4pos)
+    output_bin.append(interv5pos)
+    output_bin.append(interv6pos)
+    output_bin.append(interv7pos)
+    output_bin.append(interv8pos)
+
+Epoch 20/20
+15625/15625 [==============================] - 35s 2ms/step - loss: 6.9918 - accuracy: 0.9115
+Test loss: 7.154367923736572
+Test accuracy: 0.852977991104126

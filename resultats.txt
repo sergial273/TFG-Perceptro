@@ -1,3 +1,5 @@
+CODIFICACIO: Un bit per signe la resta per a cada intervals
+
 MLP = Sequential()
 MLP.add(InputLayer(input_shape=(64, ))) # input layer
 MLP.add(Dense(128, activation='relu')) # hidden layer 1
