@@ -53,35 +53,10 @@ class getFiles:
 
                             totalGames += 1
                 
-                # Abrir el archivo en modo lectura
-                with open('totalgames.txt', 'r') as archivo:
-                    # Leer todas las líneas del archivo
-                    lineas = archivo.readlines()
-                    
-                    # Analizar cada línea en busca de los números
-                    for linea in lineas:
-                        if 'Partides:' in linea:
-                            partides = int(linea.split(':')[1])
-                        elif 'PosicionsEvaluades:' in linea:
-                            posicions_evaluades = int(linea.split(':')[1])
-
-                # Sumar otro número a los valores extraídos
-                partides += totalGames
-                posicions_evaluades += totalBinaries
-
-                # Abrir el archivo en modo escritura
-                with open('totalgames.txt', 'w') as archivo:
-                    # Escribir los valores actualizados en el archivo
-                    archivo.write('Partides: {}\n'.format(partides))
-                    archivo.write('PosicionsEvaluades: {}'.format(posicions_evaluades))
-                                
-                
                 print(filename)
                 print(totalGames, " Games")
                 print(totalBinaries, " Binaries")
                 print("-" * 50)  # Imprimir línea separador
-
-                os.remove(os.path.join(self.directory, filename))
 
 
 

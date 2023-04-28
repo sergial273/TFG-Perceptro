@@ -99,7 +99,7 @@ MLP.compile(loss='categorical_crossentropy',
 
 # train (fit)
 MLP.fit(inputs, outputs, 
-        epochs=500, batch_size=128) #was 20 epochs
+        epochs=1, batch_size=128) #was 20 epochs
 
 
 
@@ -128,11 +128,12 @@ with open('PosicionsEvaluacions.csv', 'r') as file:
         first = False
 
 
-# convertir cada línea en una entrada numérica de 64 x 7 i una sortida de 1 elemetn
+# convertir cada línea en una entrada numérica de 64 x 7 i una sortida de 1 elemet
 g = getFiles()
 inputsTest = []
 outputsTest = []
 for line in TrainingTuples:
+    
     # convertir la cadena de 448 bits en una lista de 64 elementos de 7 bits
     binary = g.fenToBinaryAllInSquares(line[0])
     
@@ -186,6 +187,8 @@ test_loss, test_acc = MLP.evaluate(inputsTest, outputsTest,
 print("Test loss:", test_loss)
 print("Test accuracy:", test_acc)
 
+
+print(len(TestTuples))
 """"
 digit = np.reshape(digit, (-1, 784))
 digit = digit.astype('float32') / 255
