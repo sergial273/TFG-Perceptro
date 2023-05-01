@@ -12,7 +12,7 @@ Total tauler 256 bits
 
 Torn de jugador: 1 bit (0 – blanques 1- Negres)
 Drets d’enroc: 4 bits (0 cap i llavors 1 bit per enroc de rei o reina i el color)
-captura al pas: 7 bits (3 per la fila i 3 per la columna del peó, l'ultim estarà a 1 si el valor es - 0000001)
+captura al pas: 7 bits (3 per la fila i 3 per la columna del peó, l'ultim estarà a 1 si el valor es -(nul) 0000001)
 
 Total: 268 bits d’entrada
 

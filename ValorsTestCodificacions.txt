@@ -1,0 +1,45 @@
+Func: (<function eval1 at 0x000001FEC3AB3E20>, 16)
+Train acc 0.9115315079689026
+Train loss 261.55078125
+Test acc 0.8952589631080627
+Test loss 366.5368957519531
+Func: (<function eval2 at 0x000001FECC4B0310>, 7)
+Train acc 0.6870660185813904
+Train loss 144.94386291503906
+Test acc 0.6158861517906189
+Test loss 201.3368682861328
+Func: (<function eval3 at 0x000001FECC4B03A0>, 17)
+Train acc 0.5911499857902527
+Train loss 1.0598835945129395
+Test acc 0.4823448359966278
+Test loss 1.3328253030776978
+Func: (<function eval4 at 0x000001FECC4B0430>, 18)
+Train acc 0.5667619705200195
+Train loss 81.72003936767578
+Test acc 0.462534636259079
+Test loss 117.30001068115234
+Func: (<function eval5 at 0x000001CFB8F8D2D0>, 17)
+Train acc 0.8550350069999695
+Train loss 277.2613220214844
+Test acc 0.8147981762886047
+Test loss 388.40936279296875
+Func: (<function eval6 at 0x000001CFB8F8D510>, 20)
+Train acc 0.9115315079689026
+Train loss 375.8453369140625
+Test acc 0.8952589631080627
+Test loss 532.2459106445312
+Func: (<function eval7 at 0x000001CFB8F8D5A0>, 21)
+Train acc 0.8550350069999695
+Train loss 391.1182861328125
+Test acc 0.8147981762886047
+Test loss 553.427978515625
+
+
+PROVADES AMB AQUESTA CONFIGURACIÓ DE XARXA
+MLP = Sequential()
+    MLP.add(InputLayer(input_shape=(64, ))) # input layer
+    MLP.add(Dense(128, activation='sigmoid')) # hidden layer 1
+    MLP.add(Dense(64, activation='sigmoid')) # hidden layer 2
+    MLP.add(Dense(32, activation='sigmoid')) # hidden layer 2
+    #MLP.add(Dense(16, activation='sigmoid')) # hidden layer 2
+    MLP.add(Dense(func[1], activation='sigmoid')) # output layer
