@@ -6,6 +6,7 @@ from keras.utils import to_categorical
 from keras.models import Sequential
 from keras.layers import InputLayer
 from keras.layers import Dense
+from keras.layers import Dropout
 
 def eval1(eval):
     output_bin = []
@@ -376,7 +377,18 @@ def xarxa7():
     MLP.add(Dense(func[1], activation='sigmoid')) # output layer
     return MLP
 
-
+def xarxa2Dropout():
+    MLP = Sequential()
+    MLP.add(InputLayer(input_shape=(64, ))) # input layer
+    MLP.add(Dense(128, activation='sigmoid')) # hidden layer 1
+    MLP.add(Dropout(0.45)) # hidden layer 1
+    MLP.add(Dense(256, activation='sigmoid')) # hidden layer 1
+    MLP.add(Dropout(0.45)) # hidden layer 1
+    #MLP.add(Dense(64, activation='sigmoid')) # hidden layer 2
+    #MLP.add(Dense(32, activation='sigmoid')) # hidden layer 2
+    #MLP.add(Dense(16, activation='sigmoid')) # hidden layer 2
+    MLP.add(Dense(func[1], activation='sigmoid')) # output layer
+    return MLP
 
 def getTuples(numEvaluacions,numTests):
     # Abrir el archivo csv y leer los primeros 'numEvaluacions' valores
@@ -449,51 +461,52 @@ def convertTuple(Tuples, func):
     
     return inputs,outputs
 
-evalutionFunctions = [(eval1,16)]
-differentNetworks = [xarxa5,xarxa6,xarxa7]
+evalutionFunctions = [(eval6,20)]
+differentNetworks = [xarxa2Dropout] #[xarxa1,xarxa2,xarxa3,xarxa4,xarxa5,xarxa6,xarxa7]
+listOptimizers = ['Adam'] #['SGD','RMSprop','Adam','Adadelta','Adagrad','Adamax','Nadam','Ftrl']
 
 TrainingTuples,TestTuples = getTuples(numEvaluacions=2000000,numTests=100000)
+
+inputsTraining,outputsTraining = convertTuple(TrainingTuples, eval6)
+
+inputsTest,outputsTest = convertTuple(TestTuples, eval6)
+
+#normalitzar la info
+inputsTraining = inputsTraining.astype('float32') / 127
+inputsTest = inputsTest.astype('float32') / 127
 
 
 for func in evalutionFunctions:
     for xarxa in differentNetworks:
+        for optimizer in listOptimizers:
+       
+            MLP = xarxa()
 
-        inputsTraining,outputsTraining = convertTuple(TrainingTuples, func[0])
+            # summary
+            MLP.summary()
 
-        inputsTest,outputsTest = convertTuple(TestTuples, func[0])
+            # optimization
+            MLP.compile(loss='categorical_crossentropy',
+                        optimizer=optimizer,
+                        metrics=['accuracy'])
 
-        #normalitzar la info
-        inputsTraining = inputsTraining.astype('float32') / 127
-        inputsTest = inputsTest.astype('float32') / 127
+            # train (fit)
+            history = MLP.fit(inputsTraining, outputsTraining, 
+                    epochs=10, batch_size=256) #was 20 epochs and 128 batch_size
 
-        
-        MLP = xarxa()
+            train_accuracy = history.history['accuracy'][-1]
+            train_loss = history.history['loss'][-1]
+            
+            # evaluate performance
+            test_loss, test_acc = MLP.evaluate(inputsTest, outputsTest,
+                                            batch_size=128,
+                                            verbose=0)
 
-        # summary
-        MLP.summary()
-
-        # optimization
-        MLP.compile(loss='categorical_crossentropy',
-                    optimizer='adam',
-                    metrics=['accuracy'])
-
-        # train (fit)
-        history = MLP.fit(inputsTraining, outputsTraining, 
-                epochs=100, batch_size=128) #was 20 epochs
-
-        train_accuracy = history.history['accuracy'][-1]
-        train_loss = history.history['loss'][-1]
-        
-        # evaluate performance
-        test_loss, test_acc = MLP.evaluate(inputsTest, outputsTest,
-                                        batch_size=128,
-                                        verbose=0)
-
-        with open('ValorsTestXarxes.txt', mode='a') as archivo:
-            archivo.write('Xarxa: '+str(xarxa)+'\n')
-            archivo.write('Train acc '+str(train_accuracy)+'\n')
-            archivo.write('Train loss '+str(train_loss)+'\n')
-            archivo.write('Test acc '+str(test_acc)+'\n')
-            archivo.write('Test loss '+str(test_loss)+'\n')
+            with open('ValorsTestDropout.txt', mode='a') as archivo:
+                archivo.write('Xarxa (batchsize diferent): '+str(xarxa2Dropout)+'\n')
+                archivo.write('Train acc '+str(train_accuracy)+'\n')
+                archivo.write('Train loss '+str(train_loss)+'\n')
+                archivo.write('Test acc '+str(test_acc)+'\n')
+                archivo.write('Test loss '+str(test_loss)+'\n')
 
 
