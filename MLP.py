@@ -462,7 +462,7 @@ def convertTuple(Tuples, func):
     return inputs,outputs
 
 evalutionFunctions = [(eval6,20)]
-differentNetworks = [xarxa2Dropout] #[xarxa1,xarxa2,xarxa3,xarxa4,xarxa5,xarxa6,xarxa7]
+differentNetworks = [xarxa2] #[xarxa1,xarxa2,xarxa3,xarxa4,xarxa5,xarxa6,xarxa7]
 listOptimizers = ['Adam'] #['SGD','RMSprop','Adam','Adadelta','Adagrad','Adamax','Nadam','Ftrl']
 
 TrainingTuples,TestTuples = getTuples(numEvaluacions=2000000,numTests=100000)
