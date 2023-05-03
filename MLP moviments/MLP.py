@@ -6,6 +6,7 @@ from keras.utils import to_categorical
 from keras.models import Sequential
 from keras.layers import InputLayer
 from keras.layers import Dense
+from keras.layers import Dropout
 
 def eval1(eval):
     output_bin = []
@@ -305,7 +306,7 @@ def eval7(eval):
 
 def xarxa1():
     MLP = Sequential()
-    MLP.add(InputLayer(input_shape=(67, ))) # input layer
+    MLP.add(InputLayer(input_shape=(64, ))) # input layer
     #MLP.add(Dense(128, activation='sigmoid')) # hidden layer 1
     #MLP.add(Dense(64, activation='sigmoid')) # hidden layer 2
     #MLP.add(Dense(32, activation='sigmoid')) # hidden layer 2
@@ -315,7 +316,7 @@ def xarxa1():
 
 def xarxa2():
     MLP = Sequential()
-    MLP.add(InputLayer(input_shape=(67, ))) # input layer
+    MLP.add(InputLayer(input_shape=(64, ))) # input layer
     MLP.add(Dense(128, activation='sigmoid')) # hidden layer 1
     #MLP.add(Dense(64, activation='sigmoid')) # hidden layer 2
     #MLP.add(Dense(32, activation='sigmoid')) # hidden layer 2
@@ -376,11 +377,22 @@ def xarxa7():
     MLP.add(Dense(func[1], activation='sigmoid')) # output layer
     return MLP
 
-
+def xarxa2Dropout():
+    MLP = Sequential()
+    MLP.add(InputLayer(input_shape=(64, ))) # input layer
+    MLP.add(Dense(128, activation='sigmoid')) # hidden layer 1
+    MLP.add(Dropout(0.45)) # hidden layer 1
+    MLP.add(Dense(256, activation='sigmoid')) # hidden layer 1
+    MLP.add(Dropout(0.45)) # hidden layer 1
+    #MLP.add(Dense(64, activation='sigmoid')) # hidden layer 2
+    #MLP.add(Dense(32, activation='sigmoid')) # hidden layer 2
+    #MLP.add(Dense(16, activation='sigmoid')) # hidden layer 2
+    MLP.add(Dense(func[1], activation='sigmoid')) # output layer
+    return MLP
 
 def getTuples(numEvaluacions,numTests):
     # Abrir el archivo csv y leer los primeros 'numEvaluacions' valores
-    with open('PosicionsEvaluacions.csv', 'r') as file:
+    with open(os.getcwd()+'\MLP moviments\PosicionsEvaluacions2.csv', 'r') as file:
         reader = csv.reader(file)
         
         #Obtener los valores para el entrenamiento
@@ -390,31 +402,24 @@ def getTuples(numEvaluacions,numTests):
         
         # Iterar sobre cada fila del archivo
         for row in reader:
-            if not first and i < numEvaluacions:
-                # Obtener la cadena de caracteres y el campo 'value' como objeto literal de Python
-                value_literal = ast.literal_eval(row[1])
-                # Si el tipo es 'cp', imprimir la cadena de caracteres y el valor
-                if value_literal['type'] == 'cp':
-                    TrainingTuples.append((row[0], value_literal['value']))
-                    i += 1
+            if not first and i < numEvaluacions: 
+                TrainingTuples.append((row[0], row[1], row[2], row[3], row[4]))
+                i += 1
             first = False
 
     # Abrir el archivo csv y leer los primeros 'numEvaluacions' valores
-    with open('PosicionsTest.csv', 'r') as file:
+    with open(os.getcwd()+'\MLP moviments\PosicionsTest2.csv', 'r') as file:
         reader = csv.reader(file)
 
-        first=True
         TestTuples = []
         o = 0
-        
+    
         for row in reader:    
-            if not first and o < numTests:
-                TestTuples.append((row[0], row[1]))
+            if o < numTests:
+                TestTuples.append((row[0], row[1], row[2], row[3], row[4]))
                 o += 1
-            first = False
     
     return TrainingTuples, TestTuples
-
 
 def convertTuple(Tuples, func):
 
@@ -424,18 +429,13 @@ def convertTuple(Tuples, func):
     outputs = []
     for line in Tuples:
         # convertir la cadena de 448 bits en una lista de 64 elementos de 7 bits
-        binary = g.fenToBinarySeparatedCamps(line[0])
-
-        primers_256_bits = binary[:256] # agafem los primeros 256 bits
-        grups_de_4_bits = [primers_256_bits[i:i+4] for i in range(0, 256, 4)] # dividim en grups de 4 bits
-        seguent_bit_unic = binary[256]
-        resta_4_bits = binary[257:261] # l'ultim grup de 4
-        grup_de_7_bits = binary[-7:] # los ultims 7 bits
+        binary = g.fenToBinaryAllInSquares(line[0])
         
+        # Split the string into 64 groups of 7 digits
+        groups = [binary[i:i+7] for i in range(0, len(binary), 7)]
 
+        binary_numbers = [int(group, 2) for group in groups]
 
-        binary_numbers = [int(b, 2) for b in grups_de_4_bits + [seguent_bit_unic] + [resta_4_bits] + [grup_de_7_bits]]
- 
         arr = np.array(binary_numbers, dtype=int)
 
         inputs.append(arr)
@@ -454,51 +454,55 @@ def convertTuple(Tuples, func):
     
     return inputs,outputs
 
-evalutionFunctions = [(eval1,16),(eval2,7),(eval3,17),(eval4,18),(eval5,17),(eval6,20),(eval7,21)]
-differentNetworks = [xarxa2]
+evalutionFunctions = [(eval6,20)]
+differentNetworks = [xarxa2] #[xarxa1,xarxa2,xarxa3,xarxa4,xarxa5,xarxa6,xarxa7]
+listOptimizers = ['Adam'] #['SGD','RMSprop','Adam','Adadelta','Adagrad','Adamax','Nadam','Ftrl']
 
-TrainingTuples,TestTuples = getTuples(numEvaluacions=2000000,numTests=100000)
+TrainingTuples,TestTuples = getTuples(numEvaluacions=2,numTests=1)
+print(TrainingTuples)
+print(TestTuples)
+"""
+inputsTraining,outputsTraining = convertTuple(TrainingTuples, eval6)
+
+inputsTest,outputsTest = convertTuple(TestTuples, eval6)
+
+#normalitzar la info
+inputsTraining = inputsTraining.astype('float32') / 127
+inputsTest = inputsTest.astype('float32') / 127
 
 
 for func in evalutionFunctions:
     for xarxa in differentNetworks:
+        for optimizer in listOptimizers:
+       
+            MLP = xarxa()
 
-        inputsTraining,outputsTraining = convertTuple(TrainingTuples, func[0])
+            # summary
+            MLP.summary()
 
-        inputsTest,outputsTest = convertTuple(TestTuples, func[0])
+            # optimization
+            MLP.compile(loss='categorical_crossentropy',
+                        optimizer=optimizer,
+                        metrics=['accuracy'])
 
-        #normalitzar la info
-        inputsTraining = inputsTraining.astype('float32') / 127
-        inputsTest = inputsTest.astype('float32') / 127
+            # train (fit)
+            history = MLP.fit(inputsTraining, outputsTraining, 
+                    epochs=10, batch_size=256) #was 20 epochs and 128 batch_size
 
-        
-        MLP = xarxa()
+            train_accuracy = history.history['accuracy'][-1]
+            train_loss = history.history['loss'][-1]
+            
+            # evaluate performance
+            test_loss, test_acc = MLP.evaluate(inputsTest, outputsTest,
+                                            batch_size=128,
+                                            verbose=0)
 
-        # summary
-        MLP.summary()
-
-        # optimization
-        MLP.compile(loss='categorical_crossentropy',
-                    optimizer='adam',
-                    metrics=['accuracy'])
-
-        # train (fit)
-        history = MLP.fit(inputsTraining, outputsTraining, 
-                epochs=100, batch_size=128) #was 20 epochs
-
-        train_accuracy = history.history['accuracy'][-1]
-        train_loss = history.history['loss'][-1]
-        
-        # evaluate performance
-        test_loss, test_acc = MLP.evaluate(inputsTest, outputsTest,
-                                        batch_size=128,
-                                        verbose=0)
-
-        with open('ValorsTestCodificacions2.txt', mode='a') as archivo:
-            archivo.write('Xarxa: '+str(xarxa)+'\n')
-            archivo.write('Train acc '+str(train_accuracy)+'\n')
-            archivo.write('Train loss '+str(train_loss)+'\n')
-            archivo.write('Test acc '+str(test_acc)+'\n')
-            archivo.write('Test loss '+str(test_loss)+'\n')
+            with open(os.getcwd()+'\MLP moviments\ValorsTestDropout.txt', mode='a') as archivo:
+                archivo.write('Xarxa (batchsize diferent): '+str(xarxa2Dropout)+'\n')
+                archivo.write('Train acc '+str(train_accuracy)+'\n')
+                archivo.write('Train loss '+str(train_loss)+'\n')
+                archivo.write('Test acc '+str(test_acc)+'\n')
+                archivo.write('Test loss '+str(test_loss)+'\n')
 
 
+"""

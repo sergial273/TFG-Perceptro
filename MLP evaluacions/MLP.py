@@ -392,7 +392,7 @@ def xarxa2Dropout():
 
 def getTuples(numEvaluacions,numTests):
     # Abrir el archivo csv y leer los primeros 'numEvaluacions' valores
-    with open('PosicionsEvaluacions.csv', 'r') as file:
+    with open(os.getcwd()+'\MLP evaluacions\PosicionsEvaluacions.csv', 'r') as file:
         reader = csv.reader(file)
         
         #Obtener los valores para el entrenamiento
@@ -412,7 +412,7 @@ def getTuples(numEvaluacions,numTests):
             first = False
 
     # Abrir el archivo csv y leer los primeros 'numEvaluacions' valores
-    with open('PosicionsTest.csv', 'r') as file:
+    with open(os.getcwd()+'\MLP evaluacions\PosicionsTest.csv', 'r') as file:
         reader = csv.reader(file)
 
         first=True
@@ -502,7 +502,7 @@ for func in evalutionFunctions:
                                             batch_size=128,
                                             verbose=0)
 
-            with open('ValorsTestDropout.txt', mode='a') as archivo:
+            with open(os.getcwd()+'\MLP evaluacions\ValorsTestDropout.txt', mode='a') as archivo:
                 archivo.write('Xarxa (batchsize diferent): '+str(xarxa2Dropout)+'\n')
                 archivo.write('Train acc '+str(train_accuracy)+'\n')
                 archivo.write('Train loss '+str(train_loss)+'\n')

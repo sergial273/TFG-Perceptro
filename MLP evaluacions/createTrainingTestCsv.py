@@ -1,12 +1,14 @@
 import ast
 import csv
+import sys
 from getFiles import *
 
 numEvaluacions = 2000000
 numTests = 100000
 
+
 # Abrir el archivo csv y leer los primeros 'numEvaluacions' valores
-with open('PosicionsEvaluacions.csv', 'r') as file:
+with open(os.getcwd()+'\MLP evaluacions\PosicionsEvaluacions.csv', 'r') as file:
     reader = csv.reader(file)
     
     #Obtener los valores para el entrenamiento
@@ -17,6 +19,7 @@ with open('PosicionsEvaluacions.csv', 'r') as file:
     trainingfen = []
     # Iterar sobre cada fila del archivo
     for row in reader:
+        
         if not first and i < numEvaluacions:
             # Obtener la cadena de caracteres y el campo 'value' como objeto literal de Python
             value_literal = ast.literal_eval(row[1])

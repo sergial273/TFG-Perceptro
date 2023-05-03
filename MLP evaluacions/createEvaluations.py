@@ -19,10 +19,9 @@ class getFiles:
             with open(os.path.join(self.directory, filename), 'r') as f: # open in readonly mode
             # do your stuff 
                 contenido = f.read()
-
                 bloques = contenido.split("[Event")
                 # Abre el archivo CSV en modo de apendizaje y crea un objeto escritor
-                with open("PosicionsEvaluacions.csv", "a", newline="") as archivo:
+                with open(os.getcwd()+'\MLP evaluacions\PosicionsEvaluacions.csv', "a", newline="") as archivo:
                     # Imprimir cada bloque de texto sin el separador
                     for bloque in bloques:
 
