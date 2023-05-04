@@ -17,13 +17,13 @@ class getFiles:
             totalBinaries = 0
             primer = True
             with open(os.path.join(self.directory, filename), 'r') as f: # open in readonly mode
-            # do your stuff 
+            
                 contenido = f.read()
 
                 bloques = contenido.split("[Event")
-                # Abre el archivo CSV en modo de apendizaje y crea un objeto escritor
+                # Open the CSV file in learn mode and create a writer object
                 with open(os.getcwd()+'\MLP moviments\PosicionsEvaluacions2.csv', "a", newline="") as archivo:
-                    # Imprimir cada bloque de texto sin el separador
+                    # Print each block of text without the separator
                     for bloque in bloques:
 
                         if primer:
@@ -46,13 +46,13 @@ class getFiles:
 
                                 totalBinaries += 1
 
-                                # Realizar el movimiento en el tablero
+                                # Make the move on the board
                                 board.push(move)
                                 
-                                # generar el tablero FEN en binario
+                                # generate FEN board in binary
                                 fen2 = board.fen()
 
-                                #evaluar FEN amb stockfish i guardar parell  
+                                #evaluate FEN with stockfish and save pair
                                 self.stockfish.set_fen_position(fen2)
                                 evaluation2 = self.stockfish.get_evaluation()
 
@@ -63,7 +63,7 @@ class getFiles:
                                     mate2 = 1
                                     evaluation2 = evaluation2['value']   
                                 
-                                #si es mate la evaluació serà la del mate
+                                #If it is mate, the evaluation will be that of the mate
                             
                                 if (mate1 == 1 and mate2 == 1) or (mate1 == 0 and mate2 == 0):
                                     evaluation = int(evaluation2) - int(evaluation1)
@@ -72,12 +72,12 @@ class getFiles:
                                     evaluation = int(int(evaluation2) - round((1000/int(evaluation1)),0))
                                     mate = 0
                                 else:
-                                    evaluation = int(round((1000/int(evaluation2)),0)) - int(evaluation1)
+                                    evaluation = int(round((1000/int(evaluation2)),0) - int(evaluation1))
                                     mate = 1
                                 
                                 escritor = csv.writer(archivo)                      
 
-                                # Agrega algunas filas de datos al final del archivo
+                                # We write it back to the file
                                 escritor.writerow([fen1,fen2,evaluation,piece,mate])
 
                                 if fen2 != fen1:
@@ -90,7 +90,7 @@ class getFiles:
                 print(filename)
                 print(totalGames, " Games")
                 print(totalBinaries, " Binaries")
-                print("-" * 50)  # Imprimir línea separador
+                print("-" * 50) 
 
 
 

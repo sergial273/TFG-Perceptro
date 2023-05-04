@@ -21,7 +21,6 @@ class getFiles:
 
                 bloques = contenido.split("[Event")
 
-                # Imprimir cada bloque de texto sin el separador
                 for bloque in bloques:
 
                     if primer:
@@ -33,17 +32,17 @@ class getFiles:
 
                         for move in game.mainline_moves():
                             totalBinaries += 1
-                            # Realizar el movimiento en el tablero
+                            # Make the move on the board
                             board.push(move)
                             
-                            # generar el tablero FEN en binari
+                            # generate FEN board in binary
                             binary = self.fenToBinaryAllInSquares(board.fen())  
 
-                            #evaluar FEN amb stockfish i guardar parell  
+                            # evaluate FEN with stockfish and save parell 
                             self.stockfish.set_fen_position(board.fen())
                             evaluation = self.stockfish.get_evaluation()
 
-                            #del binary tornar al fen per sabre si funciona correctament
+                            #from binary return to Fen to ensure it works properly
                             fen = self.binaryToFenAllInSquares(binary)
 
                             fn =""
@@ -66,7 +65,7 @@ class getFiles:
                 print(filename)
                 print(total, " Games")
                 print(totalBinaries, " tests")
-                print("-" * 50)  # Imprimir línea separador
+                print("-" * 50) 
 
         
     def fenToBinarySeparatedCamps(self, fen):
@@ -461,8 +460,9 @@ class getFiles:
 """
 print("starting")
 g = getFiles()
-g.readNext()
-#fen = g.fenToBinaryAllInSquares("rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq - 0 1")
+#g.readNext()
+fen = g.fenToBinaryAllInSquares("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1")
 #print(g.binaryToFenAllInSquares(fen))
+print(fen)
 print("end")
 """
