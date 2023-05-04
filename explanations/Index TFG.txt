@@ -21,7 +21,6 @@ X.Metodologia
 	X.4 Codificació de les dades de sortida
 	X.5 Construcció de la xarxa neuronal
 	X.6 Procediment d'entrenament i validació del model
-	X.7 Anàlisi de resultats
 
 X.Modificacions al disseny
 	x.1 Nou disseny
