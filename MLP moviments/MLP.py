@@ -204,7 +204,7 @@ def eval5(eval):
     
     return arr1
 
-def eval6(eval):
+def eval6(eval,mate):
     output_bin = []
 
     interv1pos = 1 if eval < 0.25 else 0
@@ -248,6 +248,7 @@ def eval6(eval):
     output_bin.append(interv8neg)
     output_bin.append(interv9neg)
     output_bin.append(interv10neg)
+    output_bin.append(mate)
 
     arr1 = np.array(output_bin, dtype=float)
     
@@ -306,7 +307,7 @@ def eval7(eval):
 
 def xarxa1():
     MLP = Sequential()
-    MLP.add(InputLayer(input_shape=(64, ))) # input layer
+    MLP.add(InputLayer(input_shape=(128, ))) # input layer
     #MLP.add(Dense(128, activation='sigmoid')) # hidden layer 1
     #MLP.add(Dense(64, activation='sigmoid')) # hidden layer 2
     #MLP.add(Dense(32, activation='sigmoid')) # hidden layer 2
@@ -316,8 +317,8 @@ def xarxa1():
 
 def xarxa2():
     MLP = Sequential()
-    MLP.add(InputLayer(input_shape=(64, ))) # input layer
-    MLP.add(Dense(128, activation='sigmoid')) # hidden layer 1
+    MLP.add(InputLayer(input_shape=(128, ))) # input layer
+    MLP.add(Dense(256, activation='sigmoid')) # hidden layer 1
     #MLP.add(Dense(64, activation='sigmoid')) # hidden layer 2
     #MLP.add(Dense(32, activation='sigmoid')) # hidden layer 2
     #MLP.add(Dense(16, activation='sigmoid')) # hidden layer 2
@@ -326,9 +327,9 @@ def xarxa2():
 
 def xarxa3():
     MLP = Sequential()
-    MLP.add(InputLayer(input_shape=(64, ))) # input layer
-    MLP.add(Dense(128, activation='sigmoid')) # hidden layer 1
-    MLP.add(Dense(64, activation='sigmoid')) # hidden layer 2
+    MLP.add(InputLayer(input_shape=(128, ))) # input layer
+    MLP.add(Dense(256, activation='sigmoid')) # hidden layer 1
+    MLP.add(Dense(128, activation='sigmoid')) # hidden layer 2
     #MLP.add(Dense(32, activation='sigmoid')) # hidden layer 2
     #MLP.add(Dense(16, activation='sigmoid')) # hidden layer 2
     MLP.add(Dense(func[1], activation='sigmoid')) # output layer
@@ -336,10 +337,10 @@ def xarxa3():
 
 def xarxa4():
     MLP = Sequential()
-    MLP.add(InputLayer(input_shape=(64, ))) # input layer
-    MLP.add(Dense(128, activation='sigmoid')) # hidden layer 1
+    MLP.add(InputLayer(input_shape=(128, ))) # input layer
+    MLP.add(Dense(256, activation='sigmoid')) # hidden layer 1
+    MLP.add(Dense(128, activation='sigmoid')) # hidden layer 2
     MLP.add(Dense(64, activation='sigmoid')) # hidden layer 2
-    MLP.add(Dense(32, activation='sigmoid')) # hidden layer 2
     MLP.add(Dense(256, activation='sigmoid')) # hidden layer 1
     #MLP.add(Dense(16, activation='sigmoid')) # hidden layer 2
     MLP.add(Dense(func[1], activation='sigmoid')) # output layer
@@ -347,7 +348,7 @@ def xarxa4():
 
 def xarxa5():
     MLP = Sequential()
-    MLP.add(InputLayer(input_shape=(64, ))) # input layer
+    MLP.add(InputLayer(input_shape=(128, ))) # input layer
     MLP.add(Dense(256, activation='sigmoid')) # hidden layer 1
     MLP.add(Dense(128, activation='sigmoid')) # hidden layer 1
     MLP.add(Dense(64, activation='sigmoid')) # hidden layer 2
@@ -357,7 +358,7 @@ def xarxa5():
 
 def xarxa6():
     MLP = Sequential()
-    MLP.add(InputLayer(input_shape=(64, ))) # input layer
+    MLP.add(InputLayer(input_shape=(128, ))) # input layer
     MLP.add(Dense(128, activation='sigmoid')) # hidden layer 1
     MLP.add(Dense(256, activation='sigmoid')) # hidden layer 1
     MLP.add(Dense(64, activation='sigmoid')) # hidden layer 2
@@ -369,8 +370,8 @@ def xarxa6():
 
 def xarxa7():
     MLP = Sequential()
-    MLP.add(InputLayer(input_shape=(64, ))) # input layer
-    MLP.add(Dense(256, activation='sigmoid')) # hidden layer 1
+    MLP.add(InputLayer(input_shape=(128, ))) # input layer
+    MLP.add(Dense(512, activation='sigmoid')) # hidden layer 1
     #MLP.add(Dense(64, activation='sigmoid')) # hidden layer 2
     #MLP.add(Dense(32, activation='sigmoid')) # hidden layer 2
     #MLP.add(Dense(16, activation='sigmoid')) # hidden layer 2
@@ -379,10 +380,10 @@ def xarxa7():
 
 def xarxa2Dropout():
     MLP = Sequential()
-    MLP.add(InputLayer(input_shape=(64, ))) # input layer
-    MLP.add(Dense(128, activation='sigmoid')) # hidden layer 1
-    MLP.add(Dropout(0.45)) # hidden layer 1
+    MLP.add(InputLayer(input_shape=(128, ))) # input layer
     MLP.add(Dense(256, activation='sigmoid')) # hidden layer 1
+    MLP.add(Dropout(0.45)) # hidden layer 1
+    MLP.add(Dense(64, activation='sigmoid')) # hidden layer 1
     MLP.add(Dropout(0.45)) # hidden layer 1
     #MLP.add(Dense(64, activation='sigmoid')) # hidden layer 2
     #MLP.add(Dense(32, activation='sigmoid')) # hidden layer 2
@@ -423,12 +424,12 @@ def getTuples(numEvaluacions,numTests):
 
 def convertTuple(Tuples, func):
 
-    # convertir cada línea en una entrada numérica de 64 x 7 i una sortida de 1 elemetn
+    
     g = getFiles()
     inputs = []
     outputs = []
     for line in Tuples:
-        # convertir la cadena de 448 bits en una lista de 64 elementos de 7 bits
+        # convertir la cadena de 448 bits en una lista de 64 elements de 7 bits
         binary = g.fenToBinaryAllInSquares(line[0])
         
         # Split the string into 64 groups of 7 digits
@@ -438,14 +439,24 @@ def convertTuple(Tuples, func):
 
         arr = np.array(binary_numbers, dtype=int)
 
+        #fer el mateix amb el segon fen
+        binary = g.fenToBinaryAllInSquares(line[1])
+        
+        # Split the string into 64 groups of 7 digits
+        groups = [binary[i:i+7] for i in range(0, len(binary), 7)]
+
+        binary_numbers = [int(group, 2) for group in groups]
+
+        arr1 = np.array(binary_numbers, dtype=int)
+
+        arr = np.concatenate((arr, arr1))
         inputs.append(arr)
 
-        
         #Generate the output
 
-        eval = int(line[1])/1000
+        eval = int(line[2])/1000
 
-        arr1 = func(eval)
+        arr1 = func(eval,line[4])
         
         outputs.append(arr1)
 
@@ -454,15 +465,15 @@ def convertTuple(Tuples, func):
     
     return inputs,outputs
 
-evalutionFunctions = [(eval6,20)]
-differentNetworks = [xarxa2] #[xarxa1,xarxa2,xarxa3,xarxa4,xarxa5,xarxa6,xarxa7]
-listOptimizers = ['Adam'] #['SGD','RMSprop','Adam','Adadelta','Adagrad','Adamax','Nadam','Ftrl']
+evalutionFunctions = [(eval6,21)]
+differentNetworks = [xarxa1,xarxa2,xarxa3,xarxa4,xarxa5,xarxa6,xarxa7,xarxa2Dropout] #[xarxa2] 
+listOptimizers = ['SGD','RMSprop','Adam','Adadelta','Adagrad','Adamax','Nadam','Ftrl'] #['Adam']
 
-TrainingTuples,TestTuples = getTuples(numEvaluacions=2,numTests=1)
-print(TrainingTuples)
-print(TestTuples)
-"""
+TrainingTuples,TestTuples = getTuples(numEvaluacions=2000000,numTests=100000)
+
+
 inputsTraining,outputsTraining = convertTuple(TrainingTuples, eval6)
+
 
 inputsTest,outputsTest = convertTuple(TestTuples, eval6)
 
@@ -487,7 +498,7 @@ for func in evalutionFunctions:
 
             # train (fit)
             history = MLP.fit(inputsTraining, outputsTraining, 
-                    epochs=10, batch_size=256) #was 20 epochs and 128 batch_size
+                    epochs=20, batch_size=128) #was 20 epochs and 128 batch_size
 
             train_accuracy = history.history['accuracy'][-1]
             train_loss = history.history['loss'][-1]
@@ -498,11 +509,9 @@ for func in evalutionFunctions:
                                             verbose=0)
 
             with open(os.getcwd()+'\MLP moviments\ValorsTestDropout.txt', mode='a') as archivo:
-                archivo.write('Xarxa (batchsize diferent): '+str(xarxa2Dropout)+'\n')
+                archivo.write('Xarxa, Funcio eval, Optimitzador: '+str(xarxa)+', '+str(func)+', '+str(optimizer)+'\n')
                 archivo.write('Train acc '+str(train_accuracy)+'\n')
-                archivo.write('Train loss '+str(train_loss)+'\n')
                 archivo.write('Test acc '+str(test_acc)+'\n')
-                archivo.write('Test loss '+str(test_loss)+'\n')
+                archivo.write("-" * 50+'\n')
 
 
-"""

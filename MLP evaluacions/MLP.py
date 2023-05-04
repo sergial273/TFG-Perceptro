@@ -492,7 +492,7 @@ for func in evalutionFunctions:
 
             # train (fit)
             history = MLP.fit(inputsTraining, outputsTraining, 
-                    epochs=10, batch_size=256) #was 20 epochs and 128 batch_size
+                    epochs=10, batch_size=128) #was 20 epochs and 128 batch_size
 
             train_accuracy = history.history['accuracy'][-1]
             train_loss = history.history['loss'][-1]

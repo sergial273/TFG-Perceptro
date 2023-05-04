@@ -1,0 +1,256 @@
+Xarxa, Funcio eval, Optimitzador: <function xarxa1 at 0x0000013DB20C7560>, (<function eval6 at 0x0000013DA24D5620>, 21), SGD
+Train acc 0.0
+Test acc 0.0
+--------------------------------------------------
+Xarxa, Funcio eval, Optimitzador: <function xarxa1 at 0x0000013DB20C7560>, (<function eval6 at 0x0000013DA24D5620>, 21), RMSprop
+Train acc 0.0
+Test acc 0.0
+--------------------------------------------------
+Xarxa, Funcio eval, Optimitzador: <function xarxa1 at 0x0000013DB20C7560>, (<function eval6 at 0x0000013DA24D5620>, 21), Adam
+Train acc 0.0
+Test acc 0.0
+--------------------------------------------------
+Xarxa, Funcio eval, Optimitzador: <function xarxa1 at 0x0000013DB20C7560>, (<function eval6 at 0x0000013DA24D5620>, 21), Adadelta
+Train acc 0.0
+Test acc 0.0
+--------------------------------------------------
+Xarxa, Funcio eval, Optimitzador: <function xarxa1 at 0x0000013DB20C7560>, (<function eval6 at 0x0000013DA24D5620>, 21), Adagrad
+Train acc 0.0
+Test acc 0.0
+--------------------------------------------------
+Xarxa, Funcio eval, Optimitzador: <function xarxa1 at 0x0000013DB20C7560>, (<function eval6 at 0x0000013DA24D5620>, 21), Adamax
+Train acc 0.0
+Test acc 0.0
+--------------------------------------------------
+Xarxa, Funcio eval, Optimitzador: <function xarxa1 at 0x0000013DB20C7560>, (<function eval6 at 0x0000013DA24D5620>, 21), Nadam
+Train acc 0.5
+Test acc 0.0
+--------------------------------------------------
+Xarxa, Funcio eval, Optimitzador: <function xarxa1 at 0x0000013DB20C7560>, (<function eval6 at 0x0000013DA24D5620>, 21), Ftrl
+Train acc 0.0
+Test acc 1.0
+--------------------------------------------------
+Xarxa, Funcio eval, Optimitzador: <function xarxa2 at 0x0000013DB20E51C0>, (<function eval6 at 0x0000013DA24D5620>, 21), SGD
+Train acc 0.0
+Test acc 0.0
+--------------------------------------------------
+Xarxa, Funcio eval, Optimitzador: <function xarxa2 at 0x0000013DB20E51C0>, (<function eval6 at 0x0000013DA24D5620>, 21), RMSprop
+Train acc 0.0
+Test acc 1.0
+--------------------------------------------------
+Xarxa, Funcio eval, Optimitzador: <function xarxa2 at 0x0000013DB20E51C0>, (<function eval6 at 0x0000013DA24D5620>, 21), Adam
+Train acc 0.0
+Test acc 0.0
+--------------------------------------------------
+Xarxa, Funcio eval, Optimitzador: <function xarxa2 at 0x0000013DB20E51C0>, (<function eval6 at 0x0000013DA24D5620>, 21), Adadelta
+Train acc 0.5
+Test acc 1.0
+--------------------------------------------------
+Xarxa, Funcio eval, Optimitzador: <function xarxa2 at 0x0000013DB20E51C0>, (<function eval6 at 0x0000013DA24D5620>, 21), Adagrad
+Train acc 0.0
+Test acc 0.0
+--------------------------------------------------
+Xarxa, Funcio eval, Optimitzador: <function xarxa2 at 0x0000013DB20E51C0>, (<function eval6 at 0x0000013DA24D5620>, 21), Adamax
+Train acc 0.0
+Test acc 0.0
+--------------------------------------------------
+Xarxa, Funcio eval, Optimitzador: <function xarxa2 at 0x0000013DB20E51C0>, (<function eval6 at 0x0000013DA24D5620>, 21), Nadam
+Train acc 0.0
+Test acc 0.0
+--------------------------------------------------
+Xarxa, Funcio eval, Optimitzador: <function xarxa2 at 0x0000013DB20E51C0>, (<function eval6 at 0x0000013DA24D5620>, 21), Ftrl
+Train acc 0.0
+Test acc 0.0
+--------------------------------------------------
+Xarxa, Funcio eval, Optimitzador: <function xarxa3 at 0x0000013DB20E56C0>, (<function eval6 at 0x0000013DA24D5620>, 21), SGD
+Train acc 0.0
+Test acc 0.0
+--------------------------------------------------
+Xarxa, Funcio eval, Optimitzador: <function xarxa3 at 0x0000013DB20E56C0>, (<function eval6 at 0x0000013DA24D5620>, 21), RMSprop
+Train acc 0.0
+Test acc 1.0
+--------------------------------------------------
+Xarxa, Funcio eval, Optimitzador: <function xarxa3 at 0x0000013DB20E56C0>, (<function eval6 at 0x0000013DA24D5620>, 21), Adam
+Train acc 0.0
+Test acc 0.0
+--------------------------------------------------
+Xarxa, Funcio eval, Optimitzador: <function xarxa3 at 0x0000013DB20E56C0>, (<function eval6 at 0x0000013DA24D5620>, 21), Adadelta
+Train acc 0.0
+Test acc 0.0
+--------------------------------------------------
+Xarxa, Funcio eval, Optimitzador: <function xarxa3 at 0x0000013DB20E56C0>, (<function eval6 at 0x0000013DA24D5620>, 21), Adagrad
+Train acc 0.0
+Test acc 0.0
+--------------------------------------------------
+Xarxa, Funcio eval, Optimitzador: <function xarxa3 at 0x0000013DB20E56C0>, (<function eval6 at 0x0000013DA24D5620>, 21), Adamax
+Train acc 1.0
+Test acc 1.0
+--------------------------------------------------
+Xarxa, Funcio eval, Optimitzador: <function xarxa3 at 0x0000013DB20E56C0>, (<function eval6 at 0x0000013DA24D5620>, 21), Nadam
+Train acc 1.0
+Test acc 1.0
+--------------------------------------------------
+Xarxa, Funcio eval, Optimitzador: <function xarxa3 at 0x0000013DB20E56C0>, (<function eval6 at 0x0000013DA24D5620>, 21), Ftrl
+Train acc 0.0
+Test acc 1.0
+--------------------------------------------------
+Xarxa, Funcio eval, Optimitzador: <function xarxa4 at 0x0000013DB20E5760>, (<function eval6 at 0x0000013DA24D5620>, 21), SGD
+Train acc 0.0
+Test acc 0.0
+--------------------------------------------------
+Xarxa, Funcio eval, Optimitzador: <function xarxa4 at 0x0000013DB20E5760>, (<function eval6 at 0x0000013DA24D5620>, 21), RMSprop
+Train acc 0.0
+Test acc 1.0
+--------------------------------------------------
+Xarxa, Funcio eval, Optimitzador: <function xarxa4 at 0x0000013DB20E5760>, (<function eval6 at 0x0000013DA24D5620>, 21), Adam
+Train acc 0.0
+Test acc 0.0
+--------------------------------------------------
+Xarxa, Funcio eval, Optimitzador: <function xarxa4 at 0x0000013DB20E5760>, (<function eval6 at 0x0000013DA24D5620>, 21), Adadelta
+Train acc 1.0
+Test acc 1.0
+--------------------------------------------------
+Xarxa, Funcio eval, Optimitzador: <function xarxa4 at 0x0000013DB20E5760>, (<function eval6 at 0x0000013DA24D5620>, 21), Adagrad
+Train acc 0.0
+Test acc 0.0
+--------------------------------------------------
+Xarxa, Funcio eval, Optimitzador: <function xarxa4 at 0x0000013DB20E5760>, (<function eval6 at 0x0000013DA24D5620>, 21), Adamax
+Train acc 0.0
+Test acc 1.0
+--------------------------------------------------
+Xarxa, Funcio eval, Optimitzador: <function xarxa4 at 0x0000013DB20E5760>, (<function eval6 at 0x0000013DA24D5620>, 21), Nadam
+Train acc 0.0
+Test acc 0.0
+--------------------------------------------------
+Xarxa, Funcio eval, Optimitzador: <function xarxa4 at 0x0000013DB20E5760>, (<function eval6 at 0x0000013DA24D5620>, 21), Ftrl
+Train acc 0.0
+Test acc 0.0
+--------------------------------------------------
+Xarxa, Funcio eval, Optimitzador: <function xarxa5 at 0x0000013DB20E5800>, (<function eval6 at 0x0000013DA24D5620>, 21), SGD
+Train acc 0.0
+Test acc 0.0
+--------------------------------------------------
+Xarxa, Funcio eval, Optimitzador: <function xarxa5 at 0x0000013DB20E5800>, (<function eval6 at 0x0000013DA24D5620>, 21), RMSprop
+Train acc 0.0
+Test acc 0.0
+--------------------------------------------------
+Xarxa, Funcio eval, Optimitzador: <function xarxa5 at 0x0000013DB20E5800>, (<function eval6 at 0x0000013DA24D5620>, 21), Adam
+Train acc 0.0
+Test acc 0.0
+--------------------------------------------------
+Xarxa, Funcio eval, Optimitzador: <function xarxa5 at 0x0000013DB20E5800>, (<function eval6 at 0x0000013DA24D5620>, 21), Adadelta
+Train acc 0.0
+Test acc 0.0
+--------------------------------------------------
+Xarxa, Funcio eval, Optimitzador: <function xarxa5 at 0x0000013DB20E5800>, (<function eval6 at 0x0000013DA24D5620>, 21), Adagrad
+Train acc 0.0
+Test acc 0.0
+--------------------------------------------------
+Xarxa, Funcio eval, Optimitzador: <function xarxa5 at 0x0000013DB20E5800>, (<function eval6 at 0x0000013DA24D5620>, 21), Adamax
+Train acc 0.0
+Test acc 0.0
+--------------------------------------------------
+Xarxa, Funcio eval, Optimitzador: <function xarxa5 at 0x0000013DB20E5800>, (<function eval6 at 0x0000013DA24D5620>, 21), Nadam
+Train acc 0.0
+Test acc 0.0
+--------------------------------------------------
+Xarxa, Funcio eval, Optimitzador: <function xarxa5 at 0x0000013DB20E5800>, (<function eval6 at 0x0000013DA24D5620>, 21), Ftrl
+Train acc 0.0
+Test acc 0.0
+--------------------------------------------------
+Xarxa, Funcio eval, Optimitzador: <function xarxa6 at 0x0000013DB20E58A0>, (<function eval6 at 0x0000013DA24D5620>, 21), SGD
+Train acc 0.0
+Test acc 0.0
+--------------------------------------------------
+Xarxa, Funcio eval, Optimitzador: <function xarxa6 at 0x0000013DB20E58A0>, (<function eval6 at 0x0000013DA24D5620>, 21), RMSprop
+Train acc 0.0
+Test acc 0.0
+--------------------------------------------------
+Xarxa, Funcio eval, Optimitzador: <function xarxa6 at 0x0000013DB20E58A0>, (<function eval6 at 0x0000013DA24D5620>, 21), Adam
+Train acc 0.0
+Test acc 0.0
+--------------------------------------------------
+Xarxa, Funcio eval, Optimitzador: <function xarxa6 at 0x0000013DB20E58A0>, (<function eval6 at 0x0000013DA24D5620>, 21), Adadelta
+Train acc 0.0
+Test acc 0.0
+--------------------------------------------------
+Xarxa, Funcio eval, Optimitzador: <function xarxa6 at 0x0000013DB20E58A0>, (<function eval6 at 0x0000013DA24D5620>, 21), Adagrad
+Train acc 0.0
+Test acc 0.0
+--------------------------------------------------
+Xarxa, Funcio eval, Optimitzador: <function xarxa6 at 0x0000013DB20E58A0>, (<function eval6 at 0x0000013DA24D5620>, 21), Adamax
+Train acc 0.0
+Test acc 0.0
+--------------------------------------------------
+Xarxa, Funcio eval, Optimitzador: <function xarxa6 at 0x0000013DB20E58A0>, (<function eval6 at 0x0000013DA24D5620>, 21), Nadam
+Train acc 0.0
+Test acc 0.0
+--------------------------------------------------
+Xarxa, Funcio eval, Optimitzador: <function xarxa6 at 0x0000013DB20E58A0>, (<function eval6 at 0x0000013DA24D5620>, 21), Ftrl
+Train acc 0.0
+Test acc 1.0
+--------------------------------------------------
+Xarxa, Funcio eval, Optimitzador: <function xarxa7 at 0x0000013DB20E5940>, (<function eval6 at 0x0000013DA24D5620>, 21), SGD
+Train acc 0.0
+Test acc 0.0
+--------------------------------------------------
+Xarxa, Funcio eval, Optimitzador: <function xarxa7 at 0x0000013DB20E5940>, (<function eval6 at 0x0000013DA24D5620>, 21), RMSprop
+Train acc 0.0
+Test acc 1.0
+--------------------------------------------------
+Xarxa, Funcio eval, Optimitzador: <function xarxa7 at 0x0000013DB20E5940>, (<function eval6 at 0x0000013DA24D5620>, 21), Adam
+Train acc 0.0
+Test acc 1.0
+--------------------------------------------------
+Xarxa, Funcio eval, Optimitzador: <function xarxa7 at 0x0000013DB20E5940>, (<function eval6 at 0x0000013DA24D5620>, 21), Adadelta
+Train acc 0.0
+Test acc 0.0
+--------------------------------------------------
+Xarxa, Funcio eval, Optimitzador: <function xarxa7 at 0x0000013DB20E5940>, (<function eval6 at 0x0000013DA24D5620>, 21), Adagrad
+Train acc 0.0
+Test acc 0.0
+--------------------------------------------------
+Xarxa, Funcio eval, Optimitzador: <function xarxa7 at 0x0000013DB20E5940>, (<function eval6 at 0x0000013DA24D5620>, 21), Adamax
+Train acc 0.0
+Test acc 0.0
+--------------------------------------------------
+Xarxa, Funcio eval, Optimitzador: <function xarxa7 at 0x0000013DB20E5940>, (<function eval6 at 0x0000013DA24D5620>, 21), Nadam
+Train acc 1.0
+Test acc 1.0
+--------------------------------------------------
+Xarxa, Funcio eval, Optimitzador: <function xarxa7 at 0x0000013DB20E5940>, (<function eval6 at 0x0000013DA24D5620>, 21), Ftrl
+Train acc 0.0
+Test acc 1.0
+--------------------------------------------------
+Xarxa, Funcio eval, Optimitzador: <function xarxa2Dropout at 0x0000013DB20E59E0>, (<function eval6 at 0x0000013DA24D5620>, 21), SGD
+Train acc 0.0
+Test acc 0.0
+--------------------------------------------------
+Xarxa, Funcio eval, Optimitzador: <function xarxa2Dropout at 0x0000013DB20E59E0>, (<function eval6 at 0x0000013DA24D5620>, 21), RMSprop
+Train acc 0.0
+Test acc 0.0
+--------------------------------------------------
+Xarxa, Funcio eval, Optimitzador: <function xarxa2Dropout at 0x0000013DB20E59E0>, (<function eval6 at 0x0000013DA24D5620>, 21), Adam
+Train acc 0.5
+Test acc 1.0
+--------------------------------------------------
+Xarxa, Funcio eval, Optimitzador: <function xarxa2Dropout at 0x0000013DB20E59E0>, (<function eval6 at 0x0000013DA24D5620>, 21), Adadelta
+Train acc 0.0
+Test acc 0.0
+--------------------------------------------------
+Xarxa, Funcio eval, Optimitzador: <function xarxa2Dropout at 0x0000013DB20E59E0>, (<function eval6 at 0x0000013DA24D5620>, 21), Adagrad
+Train acc 0.0
+Test acc 0.0
+--------------------------------------------------
+Xarxa, Funcio eval, Optimitzador: <function xarxa2Dropout at 0x0000013DB20E59E0>, (<function eval6 at 0x0000013DA24D5620>, 21), Adamax
+Train acc 0.0
+Test acc 0.0
+--------------------------------------------------
+Xarxa, Funcio eval, Optimitzador: <function xarxa2Dropout at 0x0000013DB20E59E0>, (<function eval6 at 0x0000013DA24D5620>, 21), Nadam
+Train acc 0.0
+Test acc 0.0
+--------------------------------------------------
+Xarxa, Funcio eval, Optimitzador: <function xarxa2Dropout at 0x0000013DB20E59E0>, (<function eval6 at 0x0000013DA24D5620>, 21), Ftrl
+Train acc 0.0
+Test acc 0.0
+--------------------------------------------------
