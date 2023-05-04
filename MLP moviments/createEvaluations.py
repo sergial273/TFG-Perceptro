@@ -69,10 +69,10 @@ class getFiles:
                                     evaluation = int(evaluation2) - int(evaluation1)
                                     mate = mate1
                                 elif mate1 == 1 and mate2 == 0:
-                                    evaluation = int(int(evaluation2) - int(evaluation1)*(100/int(evaluation1)))
+                                    evaluation = int(int(evaluation2) - round((1000/int(evaluation1)),0))
                                     mate = 0
                                 else:
-                                    evaluation = int(int(evaluation2)*(100/int(evaluation2))) - int(evaluation1)
+                                    evaluation = int(round((1000/int(evaluation2)),0)) - int(evaluation1)
                                     mate = 1
                                 
                                 escritor = csv.writer(archivo)                      

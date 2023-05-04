@@ -6,4 +6,4 @@ with open(os.getcwd()+'\MLP moviments\PosicionsEvaluacions2.csv', "w", newline="
     escritor = csv.writer(archivo)
 
     # Escribe una fila de encabezado
-    escritor.writerow(["FEN1","FEN","eval","Piece","Mate"])
+    escritor.writerow(["FEN1","FEN","eval","Piece","Mate","textMate"])
