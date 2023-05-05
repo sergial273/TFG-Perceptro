@@ -304,6 +304,55 @@ def eval7(eval):
     
     return arr1
 
+def eval8(eval):
+    output_bin = []
+
+    interv1pos = 1 if eval < 0.25 else 0
+    interv2pos = 1 if (eval >= 0.25  and eval < 0.5) else 0
+    interv3pos = 1 if (eval >= 0.5  and eval < 0.75) else 0
+    interv4pos = 1 if (eval >= 0.75  and eval < 1) else 0
+    interv5pos = 1 if (eval >= 1  and eval < 1.25) else 0
+    interv6pos = 1 if (eval >= 1.25  and eval < 1.5) else 0
+    interv7pos = 1 if (eval >= 1.5  and eval < 2.5) else 0
+    interv8pos = 1 if (eval >= 2.5  and eval < 3.5) else 0
+    interv9pos = 1 if (eval >= 3.5  and eval < 4.5) else 0
+    interv10pos = 1 if (eval >= 4.5) else 0
+    interv1neg = 1 if (eval > -0.25 and eval <= 0) else 0
+    interv2neg = 1 if (eval <= -0.25  and eval > -0.5) else 0
+    interv3neg = 1 if (eval <= -0.5  and eval > -0.75) else 0
+    interv4neg = 1 if (eval <= -0.75  and eval > -1) else 0
+    interv5neg = 1 if (eval <= -1  and eval > -1.25) else 0
+    interv6neg = 1 if (eval <= -1.25  and eval > -1.5) else 0
+    interv7neg = 1 if (eval <= -1.5  and eval > -2.5) else 0
+    interv8neg = 1 if (eval <= -2.5  and eval > -3.5) else 0
+    interv9neg = 1 if (eval <= -3.5  and eval > -4.5) else 0
+    interv10neg = 1 if (eval <= -4.5) else 0
+
+    output_bin.append(interv1pos)
+    output_bin.append(interv2pos)
+    output_bin.append(interv3pos)
+    output_bin.append(interv4pos)
+    output_bin.append(interv5pos)
+    output_bin.append(interv6pos)
+    output_bin.append(interv7pos)
+    output_bin.append(interv8pos)
+    output_bin.append(interv9pos)
+    output_bin.append(interv10pos)
+    output_bin.append(interv1neg)
+    output_bin.append(interv2neg)
+    output_bin.append(interv3neg)
+    output_bin.append(interv4neg)
+    output_bin.append(interv5neg)
+    output_bin.append(interv6neg)
+    output_bin.append(interv7neg)
+    output_bin.append(interv8neg)
+    output_bin.append(interv9neg)
+    output_bin.append(interv10neg)
+
+    arr1 = np.array(output_bin, dtype=float)
+    
+    return arr1
+
 def xarxa1():
     MLP = Sequential()
     MLP.add(InputLayer(input_shape=(64, ))) # input layer
@@ -461,7 +510,7 @@ def convertTuple(Tuples, func):
     
     return inputs,outputs
 
-evalutionFunctions = [(eval6,20)]
+evalutionFunctions = [(eval8,20)]
 differentNetworks = [xarxa2] #[xarxa1,xarxa2,xarxa3,xarxa4,xarxa5,xarxa6,xarxa7]
 listOptimizers = ['Adam'] #['SGD','RMSprop','Adam','Adadelta','Adagrad','Adamax','Nadam','Ftrl']
 
@@ -502,8 +551,8 @@ for func in evalutionFunctions:
                                             batch_size=128,
                                             verbose=0)
 
-            with open(os.getcwd()+'\MLP evaluacions\ValorsTestDropout.txt', mode='a') as archivo:
-                archivo.write('Xarxa (batchsize diferent): '+str(xarxa2Dropout)+'\n')
+            with open(os.getcwd()+'\MLP evaluacions\ValorsTestEval8.txt', mode='a') as archivo:
+                archivo.write('Xarxa (batchsize diferent): '+str(xarxa)+'\n')
                 archivo.write('Train acc '+str(train_accuracy)+'\n')
                 archivo.write('Train loss '+str(train_loss)+'\n')
                 archivo.write('Test acc '+str(test_acc)+'\n')
