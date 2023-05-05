@@ -65,20 +65,30 @@ class getFiles:
                                 
                                 #If it is mate, the evaluation will be that of the mate
                             
-                                if (mate1 == 1 and mate2 == 1) or (mate1 == 0 and mate2 == 0):
+                                if (mate1 == 1 and mate2 == 1):
                                     evaluation = int(evaluation2) - int(evaluation1)
-                                    mate = mate1
+                                    mate = 1
+                                    textmate = "Dos son mate"
+                                
+                                elif (mate1 == 0 and mate2 == 0):
+                                    evaluation = int(evaluation2) - int(evaluation1)
+                                    mate = 0
+                                    textmate = "normal"
+
                                 elif mate1 == 1 and mate2 == 0:
                                     evaluation = int(int(evaluation2) - round((1000/int(evaluation1)),0))
                                     mate = 0
+                                    textmate = "Mate pos1"
+
                                 else:
                                     evaluation = int(round((1000/int(evaluation2)),0) - int(evaluation1))
                                     mate = 1
+                                    textmate = "Mate pos2"
                                 
                                 escritor = csv.writer(archivo)                      
 
                                 # We write it back to the file
-                                escritor.writerow([fen1,fen2,evaluation,piece,mate])
+                                escritor.writerow([fen1,fen2,evaluation,piece,mate,textmate])
 
                                 if fen2 != fen1:
                                     fen1 = fen2
