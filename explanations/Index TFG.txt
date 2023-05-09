@@ -4,7 +4,7 @@ Tapa
 Índex
 
 1.Introducció
-	1.1 Context i motivació - FET
+	1.1 Context i motivació
 	1.2 Objectius
 	1.3 Metodologia
 
