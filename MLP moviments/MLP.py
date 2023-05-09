@@ -423,7 +423,6 @@ def getTuples(numEvaluacions,numTests):
     return TrainingTuples, TestTuples
 
 def convertTuple(Tuples, func):
-
     
     g = getFiles()
     inputs = []
@@ -508,7 +507,7 @@ for func in evalutionFunctions:
                                             batch_size=128,
                                             verbose=0)
 
-            with open(os.getcwd()+'\MLP moviments\ValorsTestDropout.txt', mode='a') as archivo:
+            with open(os.getcwd()+'\MLP moviments\ValorsTests.txt', mode='a') as archivo:
                 archivo.write('Xarxa, Funcio eval, Optimitzador: '+str(xarxa)+', '+str(func)+', '+str(optimizer)+'\n')
                 archivo.write('Train acc '+str(train_accuracy)+'\n')
                 archivo.write('Test acc '+str(test_acc)+'\n')
