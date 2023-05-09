@@ -1,0 +1,11 @@
+Afegir bits seongs decisions com:
+
+    -Desenvolupament de les peces (milors caselles)
+    -Funcio de les peces (ataca una altra/defense un jaque o una peça)
+    -Estructura que queda al taulell
+    -Peça pot ser capturada
+
+
+pel cavall:
+https://bpb.opendns.com/b/https/www.chessstrategyonline.com/content/tutorials/introduction-to-chess-strategy-knights
+https://chessily.com/learn-chess/knight/
