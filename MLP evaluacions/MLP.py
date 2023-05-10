@@ -426,19 +426,6 @@ def xarxa7():
     MLP.add(Dense(func[1], activation='sigmoid')) # output layer
     return MLP
 
-def xarxa2Dropout():
-    MLP = Sequential()
-    MLP.add(InputLayer(input_shape=(64, ))) # input layer
-    MLP.add(Dense(128, activation='sigmoid')) # hidden layer 1
-    MLP.add(Dropout(0.45)) # hidden layer 1
-    MLP.add(Dense(256, activation='sigmoid')) # hidden layer 1
-    MLP.add(Dropout(0.45)) # hidden layer 1
-    #MLP.add(Dense(64, activation='sigmoid')) # hidden layer 2
-    #MLP.add(Dense(32, activation='sigmoid')) # hidden layer 2
-    #MLP.add(Dense(16, activation='sigmoid')) # hidden layer 2
-    MLP.add(Dense(func[1], activation='sigmoid')) # output layer
-    return MLP
-
 def getTuples(numEvaluacions,numTests):
     # Abrir el archivo csv y leer los primeros 'numEvaluacions' valores
     with open(os.getcwd()+'\MLP evaluacions\PosicionsEvaluacions.csv', 'r') as file:
@@ -510,25 +497,24 @@ def convertTuple(Tuples, func):
     
     return inputs,outputs
 
-evalutionFunctions = [(eval8,20)]
+evalutionFunctions = [(eval6,20)] #[(eval1,16),(eval2,7),(eval3,17),(eval4,18),(eval5,17),(eval6,20),(eval7,21),(eval8,20)]
 differentNetworks = [xarxa2] #[xarxa1,xarxa2,xarxa3,xarxa4,xarxa5,xarxa6,xarxa7]
-listOptimizers = ['Adam'] #['SGD','RMSprop','Adam','Adadelta','Adagrad','Adamax','Nadam','Ftrl']
+listOptimizers = ['SGD','RMSprop','Adam','Adadelta','Adagrad','Adamax','Nadam','Ftrl'] #['Adam']
 
 TrainingTuples,TestTuples = getTuples(numEvaluacions=2000000,numTests=100000)
-
-inputsTraining,outputsTraining = convertTuple(TrainingTuples, eval6)
-
-inputsTest,outputsTest = convertTuple(TestTuples, eval6)
-
-#normalitzar la info
-inputsTraining = inputsTraining.astype('float32') / 127
-inputsTest = inputsTest.astype('float32') / 127
 
 
 for func in evalutionFunctions:
     for xarxa in differentNetworks:
         for optimizer in listOptimizers:
-       
+            
+            inputsTraining,outputsTraining = convertTuple(TrainingTuples, func[0])
+            inputsTest,outputsTest = convertTuple(TestTuples, func[0])
+
+            #normalitzar la info
+            inputsTraining = inputsTraining.astype('float32') / 127
+            inputsTest = inputsTest.astype('float32') / 127
+
             MLP = xarxa()
 
             # summary
@@ -551,11 +537,10 @@ for func in evalutionFunctions:
                                             batch_size=128,
                                             verbose=0)
 
-            with open(os.getcwd()+'\MLP evaluacions\ValorsTestEval8.txt', mode='a') as archivo:
-                archivo.write('Xarxa (batchsize diferent): '+str(xarxa)+'\n')
+            with open(os.getcwd()+'\MLP evaluacions\ValorsTestCodificacions1Optimitzador.txt', mode='a') as archivo:
+                archivo.write('Xarxa, Funcio eval, Optimitzador: '+str(xarxa)+', '+str(func)+', '+str(optimizer)+'\n')
                 archivo.write('Train acc '+str(train_accuracy)+'\n')
-                archivo.write('Train loss '+str(train_loss)+'\n')
                 archivo.write('Test acc '+str(test_acc)+'\n')
-                archivo.write('Test loss '+str(test_loss)+'\n')
+                archivo.write("-" * 50+'\n')
 
 

@@ -423,7 +423,7 @@ def getTuples(numEvaluacions,numTests):
     return TrainingTuples, TestTuples
 
 def convertTuple(Tuples, func):
-    
+        
     g = getFiles()
     inputs = []
     outputs = []

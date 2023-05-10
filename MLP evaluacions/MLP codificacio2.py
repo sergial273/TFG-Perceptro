@@ -303,6 +303,55 @@ def eval7(eval):
     
     return arr1
 
+def eval8(eval):
+    output_bin = []
+
+    interv1pos = 1 if eval < 0.25 else 0
+    interv2pos = 1 if (eval >= 0.25  and eval < 0.5) else 0
+    interv3pos = 1 if (eval >= 0.5  and eval < 0.75) else 0
+    interv4pos = 1 if (eval >= 0.75  and eval < 1) else 0
+    interv5pos = 1 if (eval >= 1  and eval < 1.25) else 0
+    interv6pos = 1 if (eval >= 1.25  and eval < 1.5) else 0
+    interv7pos = 1 if (eval >= 1.5  and eval < 2.5) else 0
+    interv8pos = 1 if (eval >= 2.5  and eval < 3.5) else 0
+    interv9pos = 1 if (eval >= 3.5  and eval < 4.5) else 0
+    interv10pos = 1 if (eval >= 4.5) else 0
+    interv1neg = 1 if (eval > -0.25 and eval <= 0) else 0
+    interv2neg = 1 if (eval <= -0.25  and eval > -0.5) else 0
+    interv3neg = 1 if (eval <= -0.5  and eval > -0.75) else 0
+    interv4neg = 1 if (eval <= -0.75  and eval > -1) else 0
+    interv5neg = 1 if (eval <= -1  and eval > -1.25) else 0
+    interv6neg = 1 if (eval <= -1.25  and eval > -1.5) else 0
+    interv7neg = 1 if (eval <= -1.5  and eval > -2.5) else 0
+    interv8neg = 1 if (eval <= -2.5  and eval > -3.5) else 0
+    interv9neg = 1 if (eval <= -3.5  and eval > -4.5) else 0
+    interv10neg = 1 if (eval <= -4.5) else 0
+
+    output_bin.append(interv1pos)
+    output_bin.append(interv2pos)
+    output_bin.append(interv3pos)
+    output_bin.append(interv4pos)
+    output_bin.append(interv5pos)
+    output_bin.append(interv6pos)
+    output_bin.append(interv7pos)
+    output_bin.append(interv8pos)
+    output_bin.append(interv9pos)
+    output_bin.append(interv10pos)
+    output_bin.append(interv1neg)
+    output_bin.append(interv2neg)
+    output_bin.append(interv3neg)
+    output_bin.append(interv4neg)
+    output_bin.append(interv5neg)
+    output_bin.append(interv6neg)
+    output_bin.append(interv7neg)
+    output_bin.append(interv8neg)
+    output_bin.append(interv9neg)
+    output_bin.append(interv10neg)
+
+    arr1 = np.array(output_bin, dtype=float)
+    
+    return arr1
+
 def xarxa1():
     MLP = Sequential()
     MLP.add(InputLayer(input_shape=(67, ))) # input layer
@@ -325,7 +374,7 @@ def xarxa2():
 
 def xarxa3():
     MLP = Sequential()
-    MLP.add(InputLayer(input_shape=(64, ))) # input layer
+    MLP.add(InputLayer(input_shape=(67, ))) # input layer
     MLP.add(Dense(128, activation='sigmoid')) # hidden layer 1
     MLP.add(Dense(64, activation='sigmoid')) # hidden layer 2
     #MLP.add(Dense(32, activation='sigmoid')) # hidden layer 2
@@ -335,7 +384,7 @@ def xarxa3():
 
 def xarxa4():
     MLP = Sequential()
-    MLP.add(InputLayer(input_shape=(64, ))) # input layer
+    MLP.add(InputLayer(input_shape=(67, ))) # input layer
     MLP.add(Dense(128, activation='sigmoid')) # hidden layer 1
     MLP.add(Dense(64, activation='sigmoid')) # hidden layer 2
     MLP.add(Dense(32, activation='sigmoid')) # hidden layer 2
@@ -346,7 +395,7 @@ def xarxa4():
 
 def xarxa5():
     MLP = Sequential()
-    MLP.add(InputLayer(input_shape=(64, ))) # input layer
+    MLP.add(InputLayer(input_shape=(67, ))) # input layer
     MLP.add(Dense(256, activation='sigmoid')) # hidden layer 1
     MLP.add(Dense(128, activation='sigmoid')) # hidden layer 1
     MLP.add(Dense(64, activation='sigmoid')) # hidden layer 2
@@ -356,7 +405,7 @@ def xarxa5():
 
 def xarxa6():
     MLP = Sequential()
-    MLP.add(InputLayer(input_shape=(64, ))) # input layer
+    MLP.add(InputLayer(input_shape=(67, ))) # input layer
     MLP.add(Dense(128, activation='sigmoid')) # hidden layer 1
     MLP.add(Dense(256, activation='sigmoid')) # hidden layer 1
     MLP.add(Dense(64, activation='sigmoid')) # hidden layer 2
@@ -368,7 +417,7 @@ def xarxa6():
 
 def xarxa7():
     MLP = Sequential()
-    MLP.add(InputLayer(input_shape=(64, ))) # input layer
+    MLP.add(InputLayer(input_shape=(67, ))) # input layer
     MLP.add(Dense(256, activation='sigmoid')) # hidden layer 1
     #MLP.add(Dense(64, activation='sigmoid')) # hidden layer 2
     #MLP.add(Dense(32, activation='sigmoid')) # hidden layer 2
@@ -454,51 +503,52 @@ def convertTuple(Tuples, func):
     
     return inputs,outputs
 
-evalutionFunctions = [(eval1,16),(eval2,7),(eval3,17),(eval4,18),(eval5,17),(eval6,20),(eval7,21)]
-differentNetworks = [xarxa2]
+evalutionFunctions = [(eval6,20)] #[(eval1,16),(eval2,7),(eval3,17),(eval4,18),(eval5,17),(eval6,20),(eval7,21),(eval8,20)]
+differentNetworks = [xarxa2] #[xarxa1,xarxa2,xarxa3,xarxa4,xarxa5,xarxa6,xarxa7]
+listOptimizers = ['SGD','RMSprop','Adam','Adadelta','Adagrad','Adamax','Nadam','Ftrl'] #['Adam']
 
 TrainingTuples,TestTuples = getTuples(numEvaluacions=2000000,numTests=100000)
 
 
 for func in evalutionFunctions:
     for xarxa in differentNetworks:
+        for optimizer in listOptimizers:
 
-        inputsTraining,outputsTraining = convertTuple(TrainingTuples, func[0])
+            inputsTraining,outputsTraining = convertTuple(TrainingTuples, func[0])
 
-        inputsTest,outputsTest = convertTuple(TestTuples, func[0])
+            inputsTest,outputsTest = convertTuple(TestTuples, func[0])
 
-        #normalitzar la info
-        inputsTraining = inputsTraining.astype('float32') / 127
-        inputsTest = inputsTest.astype('float32') / 127
+            #normalitzar la info
+            inputsTraining = inputsTraining.astype('float32') / 127
+            inputsTest = inputsTest.astype('float32') / 127
 
-        
-        MLP = xarxa()
+            
+            MLP = xarxa()
 
-        # summary
-        MLP.summary()
+            # summary
+            MLP.summary()
 
-        # optimization
-        MLP.compile(loss='categorical_crossentropy',
-                    optimizer='adam',
-                    metrics=['accuracy'])
+            # optimization
+            MLP.compile(loss='categorical_crossentropy',
+                        optimizer=optimizer,
+                        metrics=['accuracy'])
 
-        # train (fit)
-        history = MLP.fit(inputsTraining, outputsTraining, 
-                epochs=100, batch_size=128) #was 20 epochs
+            # train (fit)
+            history = MLP.fit(inputsTraining, outputsTraining, 
+                    epochs=10, batch_size=128) #was 20 epochs
 
-        train_accuracy = history.history['accuracy'][-1]
-        train_loss = history.history['loss'][-1]
-        
-        # evaluate performance
-        test_loss, test_acc = MLP.evaluate(inputsTest, outputsTest,
-                                        batch_size=128,
-                                        verbose=0)
+            train_accuracy = history.history['accuracy'][-1]
+            train_loss = history.history['loss'][-1]
+            
+            # evaluate performance
+            test_loss, test_acc = MLP.evaluate(inputsTest, outputsTest,
+                                            batch_size=128,
+                                            verbose=0)
 
-        with open(os.getcwd()+'\MLP evaluacions\ValorsTestCodificacions2.txt', mode='a') as archivo:
-            archivo.write('Xarxa: '+str(xarxa)+'\n')
-            archivo.write('Train acc '+str(train_accuracy)+'\n')
-            archivo.write('Train loss '+str(train_loss)+'\n')
-            archivo.write('Test acc '+str(test_acc)+'\n')
-            archivo.write('Test loss '+str(test_loss)+'\n')
+            with open(os.getcwd()+'\MLP evaluacions\ValorsTestCodificacions2Optimitzador.txt', mode='a') as archivo:
+                archivo.write('Xarxa, Funcio eval, Optimitzador: '+str(xarxa)+', '+str(func)+', '+str(optimizer)+'\n')
+                archivo.write('Train acc '+str(train_accuracy)+'\n')
+                archivo.write('Test acc '+str(test_acc)+'\n')
+                archivo.write("-" * 50+'\n')
 
 
