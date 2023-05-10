@@ -4,7 +4,7 @@ Tapa
 Índex
 
 1.Introducció
-	1.1 Context i motivació
+	1.1 Context i motivació - FET
 	1.2 Objectius
 	1.3 Metodologia
 
@@ -20,7 +20,8 @@ X.Metodologia
 	X.3 Codificació de les dades d'entrada
 	X.4 Codificació de les dades de sortida
 	X.5 Construcció de la xarxa neuronal
-	X.6 Validació i resultat de les codificacions
+	X.6 Selecció de les codificacions i validació de model
+		x.6.1 Selecció de la codificació d’entrada i sortida i l’arquitectura de la xarxa
 
 X.Modificacions al disseny
 	x.1 Nou disseny

@@ -1,4 +1,4 @@
-Xarxa: <function xarxa2 at 0x000001D237B95C60>
+Xarxa: <function xarxa2 at 0x000001D237B95C60> eval1
 Train acc 0.9115315079689026
 Train loss 951.9635620117188
 Test acc 0.8952589631080627
