@@ -1,9 +1,16 @@
-Afegir bits seongs decisions com:
+1. Afegir identificació de peça
 
-    -Desenvolupament de les peces (milors caselles)
-    -Funcio de les peces (ataca una altra/defense un jaque o una peça)
-    -Estructura que queda al taulell
-    -Peça pot ser capturada
+2. Codificar moviment segons:
+    Bo:
+        - Ataca una peça
+        - És una captura
+        - Millora la posició
+
+    Dolent:
+        -Deixa de defensar una peça
+        -Empitjora la posició
+        -Si captura una peça i es un mal intercanvi
+        -Si la peça pot ser facilment capturada ???
 
 
 pel cavall:
