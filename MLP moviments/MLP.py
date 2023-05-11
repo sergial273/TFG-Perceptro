@@ -403,7 +403,7 @@ def getTuples(numEvaluacions,numTests):
         
         # Iterar sobre cada fila del archivo
         for row in reader:
-            if not first and i < numEvaluacions: 
+            if not first and i < numEvaluacions:     
                 TrainingTuples.append((row[0], row[1], row[2], row[3], row[4]))
                 i += 1
             first = False
@@ -465,8 +465,8 @@ def convertTuple(Tuples, func):
     return inputs,outputs
 
 evalutionFunctions = [(eval6,21)]
-differentNetworks = [xarxa1,xarxa2,xarxa3,xarxa4,xarxa5,xarxa6,xarxa7,xarxa2Dropout] #[xarxa2] 
-listOptimizers = ['SGD','RMSprop','Adam','Adadelta','Adagrad','Adamax','Nadam','Ftrl'] #['Adam']
+differentNetworks = [xarxa2] #[xarxa1,xarxa2,xarxa3,xarxa4,xarxa5,xarxa6,xarxa7,xarxa2Dropout]
+listOptimizers = ['Adam'] #['SGD','RMSprop','Adam','Adadelta','Adagrad','Adamax','Nadam','Ftrl']
 
 TrainingTuples,TestTuples = getTuples(numEvaluacions=2000000,numTests=100000)
 
