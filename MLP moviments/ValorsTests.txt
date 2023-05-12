@@ -26,8 +26,3 @@ Xarxa, Funcio eval, Optimitzador: <function xarxa7 at 0x000002578F295EA0>, (<fun
 Train acc 0.9946150183677673
 Test acc 0.9953600168228149
 --------------------------------------------------
-Xarxa, Funcio eval, Optimitzador: <function xarxa2Dropout at 0x000002578F295F30>, (<function eval6 at 0x000002578F295630>, 21), Adam
-Train acc 0.9946150183677673
-Test acc 0.9953600168228149
---------------------------------------------------
-
