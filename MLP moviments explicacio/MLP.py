@@ -1,4 +1,3 @@
-import ast
 import csv
 from getFiles import *
 import numpy as np
@@ -12,6 +11,7 @@ from keras.layers import Dropout
 def eval6(eval,mate):
     output_bin = []
 
+    #calcculating evaluation ranges
     interv1pos = 1 if eval < 0.25 else 0
     interv2pos = 1 if (eval >= 0.25  and eval < 0.5) else 0
     interv3pos = 1 if (eval >= 0.5  and eval < 0.75) else 0
@@ -53,8 +53,11 @@ def eval6(eval,mate):
     output_bin.append(interv8neg)
     output_bin.append(interv9neg)
     output_bin.append(interv10neg)
+
+    #adding the mate bit
     output_bin.append(mate)
 
+    #checking if piece attacks new ones
     arr1 = np.array(output_bin, dtype=float)
     
     return arr1
@@ -218,6 +221,7 @@ def convertTuple(Tuples, func):
     
     return inputs,outputs
 
+
 evalutionFunctions = [(eval6,21)]
 differentNetworks = [xarxa2] #[xarxa1,xarxa2,xarxa3,xarxa4,xarxa5,xarxa6,xarxa7,xarxa2Dropout]
 listOptimizers = ['Adam'] #['SGD','RMSprop','Adam','Adadelta','Adagrad','Adamax','Nadam','Ftrl']
@@ -251,7 +255,7 @@ for func in evalutionFunctions:
 
             # train (fit)
             history = MLP.fit(inputsTraining, outputsTraining, 
-                    epochs=20, batch_size=128) #was 20 epochs and 128 batch_size
+                    epochs=10, batch_size=128) #was 20 epochs and 128 batch_size
 
             train_accuracy = history.history['accuracy'][-1]
             train_loss = history.history['loss'][-1]
@@ -261,10 +265,9 @@ for func in evalutionFunctions:
                                             batch_size=128,
                                             verbose=0)
 
-            with open(os.getcwd()+'\MLP moviments\ValorsTests.txt', mode='a') as archivo:
+            with open(os.getcwd()+'\MLP moviments explicacio\\test.txt', mode='a') as archivo:
                 archivo.write('Xarxa, Funcio eval, Optimitzador: '+str(xarxa)+', '+str(func)+', '+str(optimizer)+'\n')
                 archivo.write('Train acc '+str(train_accuracy)+'\n')
                 archivo.write('Test acc '+str(test_acc)+'\n')
                 archivo.write("-" * 50+'\n')
-
 
