@@ -132,19 +132,6 @@ def xarxa7():
     MLP.add(Dense(func[1], activation='sigmoid')) # output layer
     return MLP
 
-def xarxa2Dropout():
-    MLP = Sequential()
-    MLP.add(InputLayer(input_shape=(128, ))) # input layer
-    MLP.add(Dense(256, activation='sigmoid')) # hidden layer 1
-    MLP.add(Dropout(0.45)) # hidden layer 1
-    MLP.add(Dense(64, activation='sigmoid')) # hidden layer 1
-    MLP.add(Dropout(0.45)) # hidden layer 1
-    #MLP.add(Dense(64, activation='sigmoid')) # hidden layer 2
-    #MLP.add(Dense(32, activation='sigmoid')) # hidden layer 2
-    #MLP.add(Dense(16, activation='sigmoid')) # hidden layer 2
-    MLP.add(Dense(func[1], activation='sigmoid')) # output layer
-    return MLP
-
 def getTuples(numEvaluacions,numTests):
     # Abrir el archivo csv y leer los primeros 'numEvaluacions' valores
     with open(os.getcwd()+'\MLP moviments\PosicionsEvaluacions2.csv', 'r') as file:
