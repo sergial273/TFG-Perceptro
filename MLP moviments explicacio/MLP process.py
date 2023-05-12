@@ -169,7 +169,7 @@ def getTuples(numEvaluacions,numTests):
             first = False
 
     # Abrir el archivo csv y leer los primeros 'numEvaluacions' valores
-    with open(os.getcwd()+'\MLP moviments\PosicionsTest2.csv', 'r') as file:
+    with open(os.getcwd()+'\MLP moviments\PosicionsEvaluacions2.csv', 'r') as file:
         reader = csv.reader(file)
 
         TestTuples = []
@@ -278,7 +278,7 @@ if __name__ == '__main__':
 
                 # train (fit)
                 history = MLP.fit(inputsTraining, outputsTraining, 
-                        epochs=20, batch_size=128) #was 20 epochs and 128 batch_size
+                        epochs=10, batch_size=128) #was 20 epochs and 128 batch_size
 
                 train_accuracy = history.history['accuracy'][-1]
                 train_loss = history.history['loss'][-1]
@@ -288,7 +288,7 @@ if __name__ == '__main__':
                                                 batch_size=128,
                                                 verbose=0)
 
-                with open(os.getcwd()+'\MLP moviments\ValorsTests.txt', mode='a') as archivo:
+                with open(os.getcwd()+'\MLP moviments explicacio\\test proc.txt', mode='a') as archivo:
                     archivo.write('Xarxa, Funcio eval, Optimitzador: '+str(xarxa)+', '+str(func)+', '+str(optimizer)+'\n')
                     archivo.write('Train acc '+str(train_accuracy)+'\n')
                     archivo.write('Test acc '+str(test_acc)+'\n')
