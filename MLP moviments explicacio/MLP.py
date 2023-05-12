@@ -1,6 +1,4 @@
-import ast
 import csv
-import time
 from getFiles import *
 import numpy as np
 from keras.utils import to_categorical
@@ -223,7 +221,6 @@ def convertTuple(Tuples, func):
     
     return inputs,outputs
 
-start = time.time()
 
 evalutionFunctions = [(eval6,21)]
 differentNetworks = [xarxa2] #[xarxa1,xarxa2,xarxa3,xarxa4,xarxa5,xarxa6,xarxa7,xarxa2Dropout]
@@ -274,6 +271,3 @@ for func in evalutionFunctions:
                 archivo.write('Test acc '+str(test_acc)+'\n')
                 archivo.write("-" * 50+'\n')
 
-end = time.time()
-
-print(end-start)

@@ -169,7 +169,7 @@ def getTuples(numEvaluacions,numTests):
             first = False
 
     # Abrir el archivo csv y leer los primeros 'numEvaluacions' valores
-    with open(os.getcwd()+'\MLP moviments\PosicionsEvaluacions2.csv', 'r') as file:
+    with open(os.getcwd()+'\MLP moviments\PosicionsTest2.csv', 'r') as file:
         reader = csv.reader(file)
 
         TestTuples = []
@@ -218,9 +218,6 @@ def convertTuple(Tuples, func):
         arr1 = func(eval,line[4])
         
         outputs.append(arr1)
-
-    outputs = np.array(outputs)
-    inputs = np.array(inputs)
     
     res =[inputs, outputs]
     return res
@@ -228,6 +225,8 @@ def convertTuple(Tuples, func):
 def process_files_concurrently(Tuples, eval):
     AllTuples = tuple(Tuples[i:i + int(numEvaluacions/4)] for i in range(0, len(Tuples), int(numEvaluacions/4)))
 
+
+    
     # Crea un ProcessPoolExecutor con 4 procesos
     with ProcessPoolExecutor(max_workers=4) as executor:
         # Crea una lista de tareas a ejecutar con executor.submit()
@@ -235,12 +234,21 @@ def process_files_concurrently(Tuples, eval):
         # Espera a que todas las tareas se completen y devuelve los resultados
         inputs = []
         outputs = []
+
         for task in tasks:
             a = task.result()
-            inputs.append(a[0])
-            outputs.append(a[1])
             
-        return inputs,outputs
+            for val in a:
+                if len(val[0]) == 128:
+                        
+                    inputs.append(val[0])
+                    inputs.append(val[1])
+                else:
+                    outputs.append(val[0])
+                    outputs.append(val[1])
+
+            
+        return np.array(inputs),np.array(outputs)
 
 start = time.time()
 if __name__ == '__main__':
@@ -261,7 +269,7 @@ if __name__ == '__main__':
     inputsTraining = inputsTraining.astype('float32') / 127
     inputsTest = inputsTest.astype('float32') / 127
 
-
+    
     for func in evalutionFunctions:
         for xarxa in differentNetworks:
             for optimizer in listOptimizers:
