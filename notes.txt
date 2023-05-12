@@ -16,13 +16,16 @@ Afegir noves sortides a la xarxa segons:
 
 -moviment defensiu --> mirar el nombre de peces que ataca la peça que em mogut abans i despres de fer el moviment
 -moviment ofensiu --> 
--és captura --> comptar el nombre de peces que hi ha abans i despres de fer el moviments
+-controla mes caselles --> comptar el nombre de caselles que veu la peça abans i despres de moures (chess .attacker() func)
+-pred control de caselles--> com el de dalt
+per les dos fer servir el attacker i en un mirar nomes el que retorna i en laltre mirar si hi ha peces a les caselles q retorna
+
+-és captura --> comptar el nombre de peces que hi ha abans i despres de fer el moviments DONE
 -el moviment fet per defensar escac --> mirar si el rey està en escac abans de fer el moviment
 -s'apropa al centre del taulell --> mirar on esta la peça colocada despres de mourela
 -s'apropa al mig del taulell
 -s'apropa al exterior del taulell
--controla mes caselles --> comptar el nombre de caselles que veu la peça abans i despres de moures (chess .attacker() func)
--pred control de caselles--> com el de dalt
+
 
 
 

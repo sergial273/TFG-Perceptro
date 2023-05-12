@@ -8,6 +8,7 @@ from keras.models import Sequential
 from keras.layers import InputLayer
 from keras.layers import Dense
 from keras.layers import Dropout
+from concurrent.futures import ProcessPoolExecutor
 
 
 def eval6(eval,mate):
@@ -221,59 +222,81 @@ def convertTuple(Tuples, func):
     outputs = np.array(outputs)
     inputs = np.array(inputs)
     
-    return inputs,outputs
+    res =[inputs, outputs]
+    return res
+
+def process_files_concurrently(Tuples, eval):
+    AllTuples = tuple(Tuples[i:i + int(numEvaluacions/4)] for i in range(0, len(Tuples), int(numEvaluacions/4)))
+
+    # Crea un ProcessPoolExecutor con 4 procesos
+    with ProcessPoolExecutor(max_workers=4) as executor:
+        # Crea una lista de tareas a ejecutar con executor.submit()
+        tasks = [executor.submit(convertTuple, tuple, eval) for tuple in AllTuples]
+        # Espera a que todas las tareas se completen y devuelve los resultados
+        inputs = []
+        outputs = []
+        for task in tasks:
+            a = task.result()
+            inputs.append(a[0])
+            outputs.append(a[1])
+            
+        return inputs,outputs
 
 start = time.time()
+if __name__ == '__main__':
+    evalutionFunctions = [(eval6,21)]
+    differentNetworks = [xarxa2] #[xarxa1,xarxa2,xarxa3,xarxa4,xarxa5,xarxa6,xarxa7,xarxa2Dropout]
+    listOptimizers = ['Adam'] #['SGD','RMSprop','Adam','Adadelta','Adagrad','Adamax','Nadam','Ftrl']
+    numEvaluacions = 2000000
+    numTests = 100000
 
-evalutionFunctions = [(eval6,21)]
-differentNetworks = [xarxa2] #[xarxa1,xarxa2,xarxa3,xarxa4,xarxa5,xarxa6,xarxa7,xarxa2Dropout]
-listOptimizers = ['Adam'] #['SGD','RMSprop','Adam','Adadelta','Adagrad','Adamax','Nadam','Ftrl']
-
-TrainingTuples,TestTuples = getTuples(numEvaluacions=2000000,numTests=100000)
-
-
-inputsTraining,outputsTraining = convertTuple(TrainingTuples, eval6)
-
-
-inputsTest,outputsTest = convertTuple(TestTuples, eval6)
-
-#normalitzar la info
-inputsTraining = inputsTraining.astype('float32') / 127
-inputsTest = inputsTest.astype('float32') / 127
+    TrainingTuples,TestTuples = getTuples(numEvaluacions,numTests)
 
 
-for func in evalutionFunctions:
-    for xarxa in differentNetworks:
-        for optimizer in listOptimizers:
-       
-            MLP = xarxa()
+    inputsTraining,outputsTraining = process_files_concurrently(TrainingTuples, eval6)
 
-            # summary
-            MLP.summary()
+    inputsTest,outputsTest = process_files_concurrently(TestTuples, eval6)
 
-            # optimization
-            MLP.compile(loss='categorical_crossentropy',
-                        optimizer=optimizer,
-                        metrics=['accuracy'])
+    #normalitzar la info
+    inputsTraining = inputsTraining.astype('float32') / 127
+    inputsTest = inputsTest.astype('float32') / 127
 
-            # train (fit)
-            history = MLP.fit(inputsTraining, outputsTraining, 
-                    epochs=20, batch_size=128) #was 20 epochs and 128 batch_size
 
-            train_accuracy = history.history['accuracy'][-1]
-            train_loss = history.history['loss'][-1]
-            
-            # evaluate performance
-            test_loss, test_acc = MLP.evaluate(inputsTest, outputsTest,
-                                            batch_size=128,
-                                            verbose=0)
+    for func in evalutionFunctions:
+        for xarxa in differentNetworks:
+            for optimizer in listOptimizers:
+        
+                MLP = xarxa()
 
-            with open(os.getcwd()+'\MLP moviments\ValorsTests.txt', mode='a') as archivo:
-                archivo.write('Xarxa, Funcio eval, Optimitzador: '+str(xarxa)+', '+str(func)+', '+str(optimizer)+'\n')
-                archivo.write('Train acc '+str(train_accuracy)+'\n')
-                archivo.write('Test acc '+str(test_acc)+'\n')
-                archivo.write("-" * 50+'\n')
+                # summary
+                MLP.summary()
 
-end = time.time()
+                # optimization
+                MLP.compile(loss='categorical_crossentropy',
+                            optimizer=optimizer,
+                            metrics=['accuracy'])
 
-print(end-start)
+                # train (fit)
+                history = MLP.fit(inputsTraining, outputsTraining, 
+                        epochs=20, batch_size=128) #was 20 epochs and 128 batch_size
+
+                train_accuracy = history.history['accuracy'][-1]
+                train_loss = history.history['loss'][-1]
+                
+                # evaluate performance
+                test_loss, test_acc = MLP.evaluate(inputsTest, outputsTest,
+                                                batch_size=128,
+                                                verbose=0)
+
+                with open(os.getcwd()+'\MLP moviments\ValorsTests.txt', mode='a') as archivo:
+                    archivo.write('Xarxa, Funcio eval, Optimitzador: '+str(xarxa)+', '+str(func)+', '+str(optimizer)+'\n')
+                    archivo.write('Train acc '+str(train_accuracy)+'\n')
+                    archivo.write('Test acc '+str(test_acc)+'\n')
+                    archivo.write("-" * 50+'\n')
+
+    end = time.time()
+
+    print(end-start)
+
+
+ 
