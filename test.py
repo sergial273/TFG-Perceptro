@@ -12,18 +12,33 @@ print (board)"""
 fen1 = fen1.split()
 fen2 = fen2.split()
 
+
 #check if there has been a capture
-a = 0
-b = 0
+a = b = 0
+codifsencera1 = codifsencera2 = ""
 for elem in fen1[0]:
     if not elem.isdigit() and elem != "/":
         a += 1
+        codifsencera1 += elem
+    elif elem == "/":
+        codifsencera1 += elem
+    else:
+        codifsencera1 += ("1" * int(elem))
+    
+
 
 for elem in fen2[0]:
     if not elem.isdigit() and elem != "/":
         b += 1
+        codifsencera2 += elem
+    elif elem == "/":
+        codifsencera2 += elem
+    else:
+        codifsencera2 += ("1" * int(elem))
     
 capture = a-b #----------------------------------------------------------------------------
 
 print (capture)
+print (codifsencera1)
+print (codifsencera2)
 

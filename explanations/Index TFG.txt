@@ -14,18 +14,18 @@ Tapa
 	2.3 Aprenentatge automàtic: algorismes i tècniques
 	2.4 Xarxes neuronals: definició i tipus
 
-X.Metodologia
-	X.1 Selecció del model de xarxa neuronal
-	X.2 Selecció de la base de dades de partides d'escacs
-	X.3 Codificació de les dades d'entrada
-	X.4 Codificació de les dades de sortida
-	X.5 Construcció de la xarxa neuronal
-	X.6 Selecció de les codificacions i validació de model
+3.Metodologia
+	3.1 Selecció del model de xarxa neuronal
+	3.2 Selecció de la base de dades de partides d'escacs
+	3.3 Codificació de les dades d'entrada
+	3.4 Codificació de les dades de sortida
+	3.5 Construcció de la xarxa neuronal
+	3.6 Selecció de les codificacions i validació de model
 
-X.Modificacions al disseny inicial
-	x.1 Nou disseny
-	x.2 Creació de la base de dades
-	x.3 Procediment d'entrenament i validació del model
+4.Modificacions al disseny inicial
+	4.1 Nou disseny plantejat
+	4.2 Creació de la base de dades
+	4.3 Procediment de construcció, d'entrenament i validació del model
 
 Resultats i avaluació
 	
