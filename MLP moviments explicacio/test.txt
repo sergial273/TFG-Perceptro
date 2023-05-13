@@ -1,0 +1,4 @@
+Xarxa, Funcio eval, Optimitzador: <function xarxa2 at 0x000001B4DDA4C550>, (<function eval6 at 0x000001B4DDA4C3A0>, 27), Adam
+Train acc 0.9946150183677673
+Test acc 0.9953600168228149
+--------------------------------------------------
