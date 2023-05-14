@@ -315,6 +315,34 @@ def convertTuple(Tuples, func):
     
     return inputs,outputs
 
+def ConvertToInput(fen1, fen2):
+    inputs = []
+    g = getFiles()
+    # convertir la cadena de 448 bits en una lista de 64 elements de 7 bits
+    binary = g.fenToBinaryAllInSquares(fen1)
+    
+    # Split the string into 64 groups of 7 digits
+    groups = [binary[i:i+7] for i in range(0, len(binary), 7)]
+
+    binary_numbers = [int(group, 2) for group in groups]
+
+    arr = np.array(binary_numbers, dtype=int)
+
+    #fer el mateix amb el segon fen
+    binary = g.fenToBinaryAllInSquares(fen2)
+    
+    # Split the string into 64 groups of 7 digits
+    groups = [binary[i:i+7] for i in range(0, len(binary), 7)]
+
+    binary_numbers = [int(group, 2) for group in groups]
+
+    arr1 = np.array(binary_numbers, dtype=int)
+
+    arr = np.concatenate((arr, arr1))
+    inputs.append(arr)
+    inputs = np.array(inputs)
+    
+    return inputs
 
 evalutionFunctions = [(eval6,27)]
 differentNetworks = [xarxa2] #[xarxa1,xarxa2,xarxa3,xarxa4,xarxa5,xarxa6,xarxa7,xarxa2Dropout]
@@ -331,6 +359,10 @@ inputsTest,outputsTest = convertTuple(TestTuples, eval6)
 #normalitzar la info
 inputsTraining = inputsTraining.astype('float32') / 127
 inputsTest = inputsTest.astype('float32') / 127
+
+"""with open(os.getcwd()+'\MLP moviments explicacio\\inputsTraining.txt', mode='w') as archivo:
+    for line in inputsTraining:
+        archivo.write(str(line)+'\n')"""
 
 
 for func in evalutionFunctions:
@@ -365,3 +397,43 @@ for func in evalutionFunctions:
                 archivo.write('Test acc '+str(test_acc)+'\n')
                 archivo.write("-" * 50+'\n')
 
+            # Guardar los pesos de la red en un archivo HDF5
+            print(MLP.predict(inputsTraining[0]))
+            print("-" * 50+'\n')
+            input = ConvertToInput("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1","rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq - 0 1")
+            input = input.astype('float32') / 127
+
+            print(MLP.predict(input))
+            print("-" * 50+'\n')
+            MLP.save("model.h5")
+            
+"""Traceback (most recent call last):
+  File "c:\Users\Usuario\Documents\GitHub\TFG-Perceptro\MLP moviments explicacio\MLP.py", line 401, in <module>
+    print(MLP.predict(inputsTraining[0]))
+  File "C:\Users\Usuario\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\keras\utils\traceback_utils.py", line 70, in error_handler
+    raise e.with_traceback(filtered_tb) from None
+  File "C:\Users\Usuario\AppData\Local\Temp\__autograph_generated_file_6hsmwzz.py", line 15, in tf__predict_function
+    retval_ = ag__.converted_call(ag__.ld(step_function), (ag__.ld(self), ag__.ld(iterator)), None, fscope)
+ValueError: in user code:
+
+    File "C:\Users\Usuario\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\keras\engine\training.py", line 2169, in predict_function  *
+        return step_function(self, iterator)
+    File "C:\Users\Usuario\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\keras\engine\training.py", line 2155, in step_function  **
+        outputs = model.distribute_strategy.run(run_step, args=(data,))
+    File "C:\Users\Usuario\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\keras\engine\training.py", line 2143, in run_step  **
+        outputs = model.predict_step(data)
+    File "C:\Users\Usuario\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\keras\engine\training.py", line 2111, in predict_step
+        return self(x, training=False)
+    File "C:\Users\Usuario\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\keras\utils\traceback_utils.py", line 70, in error_handler
+        raise e.with_traceback(filtered_tb) from None
+    File "C:\Users\Usuario\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\keras\engine\input_spec.py", line 253, in assert_input_compatibility      
+        raise ValueError(
+
+    ValueError: Exception encountered when calling layer 'sequential' (type Sequential).
+
+    Input 0 of layer "dense" is incompatible with the layer: expected min_ndim=2, found ndim=1. Full shape received: (32,)
+
+    Call arguments received by layer 'sequential' (type Sequential):
+      • inputs=tf.Tensor(shape=(32,), dtype=float32)
+      • training=False
+      • mask=None"""
