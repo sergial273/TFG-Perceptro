@@ -1,21 +1,5 @@
-1. Afegir identificació de peça
-
-2. Codificar moviment segons:
-    Bo:
-        - Ataca una peça
-        - És una captura
-        - Millora la posició
-
-    Dolent:
-        -Deixa de defensar una peça
-        -Empitjora la posició
-        -Si captura una peça i es un mal intercanvi
-        -Si la peça pot ser facilment capturada ???
-
 Afegir noves sortides a la xarxa segons:
 
--moviment defensiu --> mirar el nombre de peces que ataca la peça que em mogut abans i despres de fer el moviment
--moviment ofensiu --> 
 -controla mes caselles --> comptar el nombre de caselles que veu la peça abans i despres de moures (chess .attacker() func)
 -pred control de caselles--> com el de dalt
 per les dos fer servir el attacker i en un mirar nomes el que retorna i en laltre mirar si hi ha peces a les caselles q retorna
@@ -25,11 +9,3 @@ per les dos fer servir el attacker i en un mirar nomes el que retorna i en laltr
 -s'apropa al centre del taulell --> mirar on esta la peça colocada despres de mourela
 -s'apropa al mig del taulell
 -s'apropa al exterior del taulell
-
-
-
-
-
-pel cavall:
-https://bpb.opendns.com/b/https/www.chessstrategyonline.com/content/tutorials/introduction-to-chess-strategy-knights
-https://chessily.com/learn-chess/knight/

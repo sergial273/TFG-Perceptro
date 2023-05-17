@@ -12,10 +12,10 @@ PiecesTonNum = {
 center = [27, 28, 35, 36]
 outside = [0, 1, 2, 3, 4, 5, 6, 7, 8, 15, 16, 23, 24, 31, 32, 39, 40, 47, 48, 55, 56, 57, 58, 59, 60, 61, 62, 63]
 
-moved = "2"
+moved = "1"
 
-fen1 = "rnbqk1nr/pp1p1pbp/4p1p1/2p5/7P/1P3P2/PBPPPNP1/R2QKBNR w KQkq - 0 1"#"rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
-fen2 = "rnbqk1nr/pp1p1pbp/4p1p1/2p5/4N2P/1P3P2/PBPPP1P1/R2QKBNR w KQkq - 0 1"#"rnbqkbnr/pppppppp/8/8/8/1P6/P1PPPPPP/RNBQKBNR w KQkq - 0 1"
+fen1 = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1" #"rnbqk1nr/pp1p1pbp/4p1p1/2p5/7P/1P3P2/PBPPPNP1/R2QKBNR w KQkq - 0 1"
+fen2 = "rnbqkbnr/pppppppp/8/8/8/1P6/P1PPPPPP/RNBQKBNR w KQkq - 0 1" #"rnbqk1nr/pp1p1pbp/4p1p1/2p5/4N2P/1P3P2/PBPPP1P1/R2QKBNR w KQkq - 0 1"
 
 board1 = chess.Board(fen1)
 board2 = chess.Board(fen2)
@@ -84,7 +84,6 @@ for elem in codifsencera1:
     col += 1
     count += 1
 
-
 centre = 0
 mig = 0
 fora = 0
@@ -113,7 +112,44 @@ print(len(board2.attacks(position2)))
 
 print(len(board1.attacks(position1)))
 
+
 control = 0
 if len(board2.attacks(position2)) - len(board1.attacks(position1)) < 0:
     #perd d'algunes caselles
     control = 1
+
+
+#----------------------------------------------------- Mirar si un moviment registringeix al rival o no -------------------------------------------
+board1.turn = board2.turn = chess.WHITE
+print("*" * 50)
+print(len(list(board1.legal_moves))) #len(list(board2.legal_moves))-
+
+print(len(list(board2.legal_moves)))
+
+board1.turn = board2.turn = chess.BLACK
+print("*" * 50)
+print(len(list(board1.legal_moves))) #len(list(board2.legal_moves))-
+
+print(len(list(board2.legal_moves)))
+
+#-------------------------------------------------------------------------------------------------------------------------------------------------
+
+#------------------------------------------------- Mirar si un moviment és a una columna lliure (no peons) ---------------------------------------
+freeCol = []
+for col in range(8):
+    for fil in range(8):
+        ind = col + 8*fil
+        if board2.piece_at(ind) != None:
+            if board2.piece_at(ind).piece_type == chess.PAWN:
+                freeCol.append(0)
+                break
+        if ind > 55: freeCol.append(1)
+
+print(freeCol)
+   
+if freeCol[position2 % 8] == 1:
+    print("A")
+
+
+
+#-------------------------------------------------------------------------------------------------------------------------------------------------
