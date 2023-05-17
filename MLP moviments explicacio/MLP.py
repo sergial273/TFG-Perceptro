@@ -361,12 +361,22 @@ for func in evalutionFunctions:
                                             batch_size=128,
                                             verbose=0)
 
-            with open(os.getcwd()+'\MLP moviments explicacio\\test.txt', mode='a') as archivo:
+            """with open(os.getcwd()+'\MLP moviments explicacio\\test.txt', mode='a') as archivo:
                 archivo.write('Xarxa, Funcio eval, Optimitzador: '+str(xarxa)+', '+str(func)+', '+str(optimizer)+'\n')
                 archivo.write('Train acc '+str(train_accuracy)+'\n')
                 archivo.write('Test acc '+str(test_acc)+'\n')
-                archivo.write("-" * 50+'\n')
+                archivo.write("-" * 50+'\n')"""
 
+            TrainingTuples,TestTuples = getTuples(numEvaluacions=2,numTests=2)
+
+            inputsTraining,outputsTraining = convertTuple(TrainingTuples, eval6)
+
+            pred = MLP.predict(inputsTraining)
+
+            print("AAAAAAA")
+            print(pred)
+            print("AAAAAAA")
+            
             # Guardar los pesos de la red en un archivo HDF5
             MLP.save("model.h5")
             
