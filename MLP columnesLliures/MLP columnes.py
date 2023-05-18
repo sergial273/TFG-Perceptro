@@ -18,6 +18,9 @@ def aCasellaLliure(fen1, fen2, moved):
     
     board2 = chess.Board(fen2)
 
+    fen1 = fen1.split()
+    fen2 = fen2.split()
+
     a = b = 0
     codifsencera1 = codifsencera2 = ""
     for elem in fen1[0]:
@@ -219,7 +222,7 @@ evalutionFunctions = [(aCasellaLliure,1)]
 differentNetworks = [xarxa2] #[xarxa1,xarxa2,xarxa3,xarxa4,xarxa5,xarxa6,xarxa7,xarxa2Dropout]
 listOptimizers = ['Adam'] #['SGD','RMSprop','Adam','Adadelta','Adagrad','Adamax','Nadam','Ftrl']
 
-TrainingTuples,TestTuples = getTuples(numEvaluacions=10,numTests=10)
+TrainingTuples,TestTuples = getTuples(numEvaluacions=2000000,numTests=100000)
 
 
 inputsTraining,outputsTraining = convertTuple(TrainingTuples, aCasellaLliure)
