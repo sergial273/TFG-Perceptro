@@ -335,7 +335,7 @@ inputsTest = inputsTest.astype('float32') / 127
         archivo.write(str(line)+'\n')"""
 
 # https://www.tensorflow.org/api_docs/python/tf/keras/losses/CategoricalCrossentropy
-# probar amb classe SparseCategoricalCrossentropy
+# probar amb classe SparseCategoricalCrossentropy amb optimizer = sgd
 for func in evalutionFunctions:
     for xarxa in differentNetworks:
         for optimizer in listOptimizers:
