@@ -1,0 +1,4 @@
+Xarxa, Funcio eval, Optimitzador: <function xarxa2 at 0x000001E44A7D2D40>, (<function aCasellaLliure at 0x000001E44A748B80>, 1), Adam
+Train acc 1.0
+Test acc 1.0
+--------------------------------------------------

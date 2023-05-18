@@ -102,6 +102,7 @@ array2 = np.array([1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1
 
 for predict in prediction:
     # Imprimir el resultado
+    #contar el nombre de bits que es pot tenir com a maxim a 1, si es més petit rescalcular-ho tot i fer un array nou
     if np.array_equal(predict, array2):
         print("iguals")
     else: print("a")

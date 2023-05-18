@@ -1,5 +1,7 @@
 import chess
+import time
 
+start = time.time()
 PiecesTonNum = {
   "p": "1",
   "n": "2",
@@ -153,3 +155,6 @@ if freeCol[position2 % 8] == 1:
 
 
 #-------------------------------------------------------------------------------------------------------------------------------------------------
+
+finish = time.time()
+print(finish-start)

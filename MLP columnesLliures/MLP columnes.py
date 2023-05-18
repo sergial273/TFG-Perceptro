@@ -6,7 +6,7 @@ from keras.models import Sequential
 from keras.layers import InputLayer
 from keras.layers import Dense
 
-def definirmoviment(fen1, fen2, moved):
+def aCasellaLliure(fen1, fen2, moved):
     PiecesTonNum = {
     "p": "1",
     "n": "2",
@@ -15,17 +15,9 @@ def definirmoviment(fen1, fen2, moved):
     "q": "5",
     "k": "6"
     }
-
-    center = [27, 28, 35, 36]
-    outside = [0, 1, 2, 3, 4, 5, 6, 7, 8, 15, 16, 23, 24, 31, 32, 39, 40, 47, 48, 55, 56, 57, 58, 59, 60, 61, 62, 63]
-
-    board1 = chess.Board(fen1)
+    
     board2 = chess.Board(fen2)
 
-    fen1 = fen1.split()
-    fen2 = fen2.split()
-
-    #check if there has been a capture
     a = b = 0
     codifsencera1 = codifsencera2 = ""
     for elem in fen1[0]:
@@ -46,30 +38,9 @@ def definirmoviment(fen1, fen2, moved):
             codifsencera2 += elem
         else:
             codifsencera2 += ("1" * int(elem))
-    
-
     col = 0
     fil = 0
-    count = 0
-    position1 = 0
-    #checking which piece moved
-    for elem in codifsencera2:
-
-        if elem.isdigit() and elem != codifsencera1[count] and codifsencera1[count].isascii():
-            if moved == PiecesTonNum[codifsencera1[count].lower()]:   
-                piece = codifsencera1[count]
-                position1 = (7-fil)*8 + col
-            
-        if elem == "/" and position1 == 0:
-            fil += 1
-            col = -1
-    
-        col += 1
-        count += 1
-
-    col = 0
-    fil = 0
-    count = 0
+    count = 0   
     position2 = 0
     #checking which piece moved
     for elem in codifsencera1:
@@ -84,89 +55,21 @@ def definirmoviment(fen1, fen2, moved):
 
         col += 1
         count += 1
-
-    centre = 0
-    mig = 0
-    fora = 0
-    if position2 in center:
-        centre = 1
-    elif position2 in outside:
-        fora = 1
-    else:
-        mig = 1
-
-
-    control = 0
-    if len(board2.attacks(position2)) - len(board1.attacks(position1)) < 0:
-        #perd d'algunes caselles
-        control = 1
-
-    captura = a-b #És captura
-    check = 1 if board1.is_check() else 0 #Està en jaque
-
-    return captura, check, centre, mig, fora, control
-
-def eval6(eval,mate, fen1, fen2, moved):
-    output_bin = []
-
-    #calcculating evaluation ranges
-    interv1pos = 1 if eval < 0.25 else 0
-    interv2pos = 1 if (eval >= 0.25  and eval < 0.5) else 0
-    interv3pos = 1 if (eval >= 0.5  and eval < 0.75) else 0
-    interv4pos = 1 if (eval >= 0.75  and eval < 1) else 0
-    interv5pos = 1 if (eval >= 1  and eval < 1.25) else 0
-    interv6pos = 1 if (eval >= 1.25  and eval < 1.5) else 0
-    interv7pos = 1 if (eval >= 1.5  and eval < 2.5) else 0
-    interv8pos = 1 if (eval >= 2.5  and eval < 3.5) else 0
-    interv9pos = 1 if (eval >= 3.5  and eval < 4.5) else 0
-    interv10pos = 1 if (eval >= 4.5) else 0
-    interv1neg = 1 if (eval > -0.25 and eval<0) else 0
-    interv2neg = 1 if (eval <= -0.25  and eval > -0.5) else 0
-    interv3neg = 1 if (eval <= -0.5  and eval > -0.75) else 0
-    interv4neg = 1 if (eval <= -0.75  and eval > -1) else 0
-    interv5neg = 1 if (eval <= -1  and eval > -1.25) else 0
-    interv6neg = 1 if (eval <= -1.25  and eval > -1.5) else 0
-    interv7neg = 1 if (eval <= -1.5  and eval > -2.5) else 0
-    interv8neg = 1 if (eval <= -2.5  and eval > -3.5) else 0
-    interv9neg = 1 if (eval <= -3.5  and eval > -4.5) else 0
-    interv10neg = 1 if (eval <= -4.5) else 0
-
-    output_bin.append(interv1pos)
-    output_bin.append(interv2pos)
-    output_bin.append(interv3pos)
-    output_bin.append(interv4pos)
-    output_bin.append(interv5pos)
-    output_bin.append(interv6pos)
-    output_bin.append(interv7pos)
-    output_bin.append(interv8pos)
-    output_bin.append(interv9pos)
-    output_bin.append(interv10pos)
-    output_bin.append(interv1neg)
-    output_bin.append(interv2neg)
-    output_bin.append(interv3neg)
-    output_bin.append(interv4neg)
-    output_bin.append(interv5neg)
-    output_bin.append(interv6neg)
-    output_bin.append(interv7neg)
-    output_bin.append(interv8neg)
-    output_bin.append(interv9neg)
-    output_bin.append(interv10neg)
-
-    #adding the mate bit
-    output_bin.append(mate)
-
-    captura, escac, centre, mig, exterior, control = definirmoviment(fen1, fen2, moved)
-    output_bin.append(captura)
-    output_bin.append(escac)
-    output_bin.append(centre)
-    output_bin.append(mig)
-    output_bin.append(exterior)
-    output_bin.append(control)
-
-    #checking if piece attacks new ones
-    arr1 = np.array(output_bin, dtype=float)
+        
+    freeCol = []
+    for col in range(8):
+        for fil in range(8):
+            ind = col + 8*fil
+            if board2.piece_at(ind) != None:
+                if board2.piece_at(ind).piece_type == chess.PAWN:
+                    freeCol.append(0)
+                    break
+            if ind > 55: freeCol.append(1)
     
-    return arr1
+    if freeCol[position2 % 8] == 1:
+        return 1
+    
+    return 0
 
 def xarxa1():
     MLP = Sequential()
@@ -303,9 +206,7 @@ def convertTuple(Tuples, func):
 
         #Generate the output
 
-        eval = int(line[2])/1000
-
-        arr1 = func(eval,line[4],line[0],line[1],line[3])
+        arr1 = func(line[0],line[1],line[3])
         
         outputs.append(arr1)
 
@@ -314,28 +215,22 @@ def convertTuple(Tuples, func):
     
     return inputs,outputs
 
-evalutionFunctions = [(eval6,27)]
+evalutionFunctions = [(aCasellaLliure,1)]
 differentNetworks = [xarxa2] #[xarxa1,xarxa2,xarxa3,xarxa4,xarxa5,xarxa6,xarxa7,xarxa2Dropout]
 listOptimizers = ['Adam'] #['SGD','RMSprop','Adam','Adadelta','Adagrad','Adamax','Nadam','Ftrl']
 
-TrainingTuples,TestTuples = getTuples(numEvaluacions=2000000,numTests=100000)
+TrainingTuples,TestTuples = getTuples(numEvaluacions=10,numTests=10)
 
 
-inputsTraining,outputsTraining = convertTuple(TrainingTuples, eval6)
+inputsTraining,outputsTraining = convertTuple(TrainingTuples, aCasellaLliure)
 
 
-inputsTest,outputsTest = convertTuple(TestTuples, eval6)
+inputsTest,outputsTest = convertTuple(TestTuples, aCasellaLliure)
 
 #normalitzar la info
 inputsTraining = inputsTraining.astype('float32') / 127
 inputsTest = inputsTest.astype('float32') / 127
 
-"""with open(os.getcwd()+'\MLP moviments explicacio\\inputsTraining.txt', mode='w') as archivo:
-    for line in inputsTraining:
-        archivo.write(str(line)+'\n')"""
-
-# https://www.tensorflow.org/api_docs/python/tf/keras/losses/CategoricalCrossentropy
-# probar amb classe SparseCategoricalCrossentropy
 for func in evalutionFunctions:
     for xarxa in differentNetworks:
         for optimizer in listOptimizers:
@@ -346,7 +241,7 @@ for func in evalutionFunctions:
             MLP.summary()
 
             # optimization
-            MLP.compile(loss='categorical_crossentropy',
+            MLP.compile(loss='binary_crossentropy',
                         optimizer=optimizer,
                         metrics=['accuracy'])
 
@@ -362,22 +257,10 @@ for func in evalutionFunctions:
                                             batch_size=128,
                                             verbose=0)
 
-            """with open(os.getcwd()+'\MLP moviments explicacio\\test.txt', mode='a') as archivo:
+            with open(os.getcwd()+'\MLP columnesLliures\\test.txt', mode='a') as archivo:
                 archivo.write('Xarxa, Funcio eval, Optimitzador: '+str(xarxa)+', '+str(func)+', '+str(optimizer)+'\n')
                 archivo.write('Train acc '+str(train_accuracy)+'\n')
                 archivo.write('Test acc '+str(test_acc)+'\n')
-                archivo.write("-" * 50+'\n')"""
-
-            TrainingTuples,TestTuples = getTuples(numEvaluacions=2,numTests=2)
-
-            inputsTraining,outputsTraining = convertTuple(TrainingTuples, eval6)
-
-            pred = MLP.predict(inputsTraining)
-
-            print("AAAAAAA")
-            print(pred)
-            print("AAAAAAA")
+                archivo.write("-" * 50+'\n')
             
-            # Guardar los pesos de la red en un archivo HDF5
-            MLP.save("model.h5")
-            
+
