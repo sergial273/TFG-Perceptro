@@ -334,8 +334,7 @@ inputsTest = inputsTest.astype('float32') / 127
     for line in inputsTraining:
         archivo.write(str(line)+'\n')"""
 
-# https://www.tensorflow.org/api_docs/python/tf/keras/losses/CategoricalCrossentropy
-# probar amb classe SparseCategoricalCrossentropy amb optimizer = sgd
+
 for func in evalutionFunctions:
     for xarxa in differentNetworks:
         for optimizer in listOptimizers:
@@ -347,7 +346,7 @@ for func in evalutionFunctions:
 
             # optimization
             MLP.compile(loss='categorical_crossentropy',
-                        optimizer=optimizer,
+                        optimizer=optimizer, 
                         metrics=['accuracy'])
 
             # train (fit)
