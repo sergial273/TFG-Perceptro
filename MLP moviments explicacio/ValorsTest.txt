@@ -1,0 +1,28 @@
+Xarxa, Funcio eval, Optimitzador: <function xarxa1 at 0x00000201A3C2C4C0>, (<function eval6 at 0x00000201A3C2C3A0>, 27), Adam
+Train acc 0.9946150183677673
+Test acc 0.9953600168228149
+--------------------------------------------------
+Xarxa, Funcio eval, Optimitzador: <function xarxa2 at 0x00000201A3C2C550>, (<function eval6 at 0x00000201A3C2C3A0>, 27), Adam
+Train acc 0.9946150183677673
+Test acc 0.9953600168228149
+--------------------------------------------------
+Xarxa, Funcio eval, Optimitzador: <function xarxa3 at 0x00000201B378D360>, (<function eval6 at 0x00000201A3C2C3A0>, 27), Adam
+Train acc 0.9946150183677673
+Test acc 0.9953600168228149
+--------------------------------------------------
+Xarxa, Funcio eval, Optimitzador: <function xarxa4 at 0x00000201B378D5A0>, (<function eval6 at 0x00000201A3C2C3A0>, 27), Adam
+Train acc 0.9946150183677673
+Test acc 0.9953600168228149
+--------------------------------------------------
+Xarxa, Funcio eval, Optimitzador: <function xarxa5 at 0x00000201B378D630>, (<function eval6 at 0x00000201A3C2C3A0>, 27), Adam
+Train acc 0.9946150183677673
+Test acc 0.9953600168228149
+--------------------------------------------------
+Xarxa, Funcio eval, Optimitzador: <function xarxa6 at 0x00000201B378DAB0>, (<function eval6 at 0x00000201A3C2C3A0>, 27), Adam
+Train acc 0.9946150183677673
+Test acc 0.9953600168228149
+--------------------------------------------------
+Xarxa, Funcio eval, Optimitzador: <function xarxa7 at 0x00000201B378DB40>, (<function eval6 at 0x00000201A3C2C3A0>, 27), Adam
+Train acc 0.9946150183677673
+Test acc 0.9953600168228149
+--------------------------------------------------

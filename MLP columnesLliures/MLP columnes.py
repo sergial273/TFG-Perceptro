@@ -219,14 +219,12 @@ def convertTuple(Tuples, func):
     return inputs,outputs
 
 evalutionFunctions = [(aCasellaLliure,1)]
-differentNetworks = [xarxa2] #[xarxa1,xarxa2,xarxa3,xarxa4,xarxa5,xarxa6,xarxa7,xarxa2Dropout]
+differentNetworks = [xarxa1,xarxa2,xarxa3,xarxa4,xarxa5,xarxa6,xarxa7] #[xarxa2]
 listOptimizers = ['Adam'] #['SGD','RMSprop','Adam','Adadelta','Adagrad','Adamax','Nadam','Ftrl']
 
 TrainingTuples,TestTuples = getTuples(numEvaluacions=2000000,numTests=100000)
 
-
 inputsTraining,outputsTraining = convertTuple(TrainingTuples, aCasellaLliure)
-
 
 inputsTest,outputsTest = convertTuple(TestTuples, aCasellaLliure)
 
@@ -260,23 +258,14 @@ for func in evalutionFunctions:
                                             batch_size=128,
                                             verbose=0)
 
-            """with open(os.getcwd()+'\MLP columnesLliures\\test.txt', mode='a') as archivo:
+            with open(os.getcwd()+'\MLP columnesLliures\\ValorsTest.txt', mode='a') as archivo:
                 archivo.write('Xarxa, Funcio eval, Optimitzador: '+str(xarxa)+', '+str(func)+', '+str(optimizer)+'\n')
                 archivo.write('Train acc '+str(train_accuracy)+'\n')
                 archivo.write('Test acc '+str(test_acc)+'\n')
-                archivo.write("-" * 50+'\n')"""
+                archivo.write("-" * 50+'\n')
             
-
-            TrainingTuples,TestTuples = getTuples(numEvaluacions=5,numTests=5)
-
-
-            inputsTraining,outputsTraining = convertTuple(TrainingTuples, aCasellaLliure)
-
-
-            inputsTest,outputsTest = convertTuple(TestTuples, aCasellaLliure)
-
-            print("AAAAAAAAA")
-            print(MLP.predict(inputsTest))
+            # Guardar los pesos de la red en un archivo HDF5
+            #MLP.save("modelMLPcolumnes.h5")
 
             
 

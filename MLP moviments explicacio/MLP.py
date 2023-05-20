@@ -315,7 +315,7 @@ def convertTuple(Tuples, func):
     return inputs,outputs
 
 evalutionFunctions = [(eval6,27)]
-differentNetworks = [xarxa2] #[xarxa1,xarxa2,xarxa3,xarxa4,xarxa5,xarxa6,xarxa7,xarxa2Dropout]
+differentNetworks = [xarxa1,xarxa2,xarxa3,xarxa4,xarxa5,xarxa6,xarxa7] #[xarxa2]
 listOptimizers = ['Adam'] #['SGD','RMSprop','Adam','Adadelta','Adagrad','Adamax','Nadam','Ftrl']
 
 TrainingTuples,TestTuples = getTuples(numEvaluacions=2000000,numTests=100000)
@@ -329,11 +329,6 @@ inputsTest,outputsTest = convertTuple(TestTuples, eval6)
 #normalitzar la info
 inputsTraining = inputsTraining.astype('float32') / 127
 inputsTest = inputsTest.astype('float32') / 127
-
-"""with open(os.getcwd()+'\MLP moviments explicacio\\inputsTraining.txt', mode='w') as archivo:
-    for line in inputsTraining:
-        archivo.write(str(line)+'\n')"""
-
 
 for func in evalutionFunctions:
     for xarxa in differentNetworks:
@@ -361,22 +356,12 @@ for func in evalutionFunctions:
                                             batch_size=128,
                                             verbose=0)
 
-            """with open(os.getcwd()+'\MLP moviments explicacio\\test.txt', mode='a') as archivo:
+            with open(os.getcwd()+'\MLP moviments explicacio\\ValorsTest.txt', mode='a') as archivo:
                 archivo.write('Xarxa, Funcio eval, Optimitzador: '+str(xarxa)+', '+str(func)+', '+str(optimizer)+'\n')
                 archivo.write('Train acc '+str(train_accuracy)+'\n')
                 archivo.write('Test acc '+str(test_acc)+'\n')
-                archivo.write("-" * 50+'\n')"""
-
-            TrainingTuples,TestTuples = getTuples(numEvaluacions=2,numTests=2)
-
-            inputsTraining,outputsTraining = convertTuple(TrainingTuples, eval6)
-
-            pred = MLP.predict(inputsTraining)
-
-            print("AAAAAAA")
-            print(pred)
-            print("AAAAAAA")
+                archivo.write("-" * 50+'\n')
             
             # Guardar los pesos de la red en un archivo HDF5
-            MLP.save("model.h5")
+            #MLP.save("modelMLPexplicacions.h5")
             
