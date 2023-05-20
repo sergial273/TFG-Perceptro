@@ -18,7 +18,7 @@ class Explanations:
 	def MLPcolumns(self, fen1, fen2):
 			inputs = self.convertTuple((fen1,fen2))
 			inputs = inputs.astype('float32') / 127
-			model = load_model('./ModelFiles/model.h5')
+			model = load_model('./ModelFiles/modelMLPcolumnes.h5')
 			predictions = model.predict(inputs, verbose=0)
 			return predictions[0]
 	
@@ -138,81 +138,72 @@ class Explanations:
 						else: frase_expl = frase_expl + " En general, aquest moviment empitjora la teva posició."
 
 			if onmogut != "exterior":
-				frase_expl = frase_expl + "\n" +"La teva peça està ocupant el " + onmogut + ", "
+				frase_expl2 = "La teva peça està ocupant el " + onmogut + ", "
 			else:
-				frase_expl = frase_expl + "\n" +"La teva peça està ocupant l'" + onmogut + ", "
+				frase_expl2 = "La teva peça està ocupant l'" + onmogut + ", "
 
-
-			if difW > 0 and difB>0:
+			if (difW > 0 and difB>0) or (difW >= 0 and difB>0) or (difW > 0 and difB>=0):
 				if difW > difB:
 					if fen1.split()[1] == "w":
-						frase_expl = frase_expl + "a més, has aconseguit restringir els moviments del rival augmentant els teus. "
+						frase_expl2 = frase_expl2 + "a més, has aconseguit restringir els moviments del rival augmentant els teus. "
 					else:
-						frase_expl = frase_expl + "però, has restringit els teus moviments i has augmentat els del rival. "
+						frase_expl2 = frase_expl2 + "però, has restringit els teus moviments i has augmentat els del rival. "
 				elif difW < difB:
 					if fen1.split()[1] == "w":
-						frase_expl = frase_expl + "però, has restringit els teus moviments i has augmentat els del rival. "
+						frase_expl2 = frase_expl2 + "però, has restringit els teus moviments i has augmentat els del rival. "
 					else:
-						frase_expl = frase_expl + "a més, has aconseguit restringir els moviments del rival augmentant els teus. "
+						frase_expl2 = frase_expl2 + "a més, has aconseguit restringir els moviments del rival augmentant els teus. "
 				elif difW == difB:
-						frase_expl = frase_expl + "has augmentat els teus moviments, però també els del rival. "
+						frase_expl2 = frase_expl2 + "has augmentat els teus moviments, però també els del rival. "
 
-			elif difW < 0 and difB < 0:
+			elif (difW < 0 and difB < 0) or (difW <= 0 and difB < 0) or (difW < 0 and difB <= 0):
 				if difW > difB:
 					if fen1.split()[1] == "w":
-						frase_expl = frase_expl + "a més, tot i restringir els teus moviments, has restringit encara més els del rival. "
+						frase_expl2 = frase_expl2 + "a més, tot i restringir els teus moviments, has restringit encara més els del rival. "
 					else:
-						frase_expl = frase_expl + "però, tot i restringir els moviments del rival, has restringit encara més els teus. "
+						frase_expl2 = frase_expl2 + "però, tot i restringir els moviments del rival, has restringit encara més els teus. "
 				elif difW < difB:
 					if fen1.split()[1] == "w":
-						frase_expl = frase_expl + "però, tot i restringir els moviments del rival, has restringit encara més els teus. "
+						frase_expl2 = frase_expl2 + "però, tot i restringir els moviments del rival, has restringit encara més els teus. "
 
 					else:
-						frase_expl = frase_expl + "a més, tot i restringir els teus moviments, has restringit encara més els del rival. "
+						frase_expl2 = frase_expl2 + "a més, tot i restringir els teus moviments, has restringit encara més els del rival. "
 				elif difW == difB:
-						frase_expl = frase_expl + "has restringit tant els teus moviments com els del rival. "
+						frase_expl2 = frase_expl2 + "has restringit tant els teus moviments com els del rival. "
 
-			elif difW > 0 and difB < 0:
+			elif (difW > 0 and difB < 0) or (difW >= 0 and difB < 0) or (difW > 0 and difB <= 0):
 				if fen1.split()[1] == "w":
-					frase_expl = frase_expl + "a més, has aconseguit restringir els moviments del rival augmentant els teus. "
+					frase_expl2 = frase_expl2 + "a més, has aconseguit restringir els moviments del rival augmentant els teus. "
 				else:
-					frase_expl = frase_expl + "però, has restringit els teus moviments i has augmentat els del rival. "
+					frase_expl2 = frase_expl2 + "però, has restringit els teus moviments i has augmentat els del rival. "
 
-			elif difW < 0 and difB>0:
+			elif (difW < 0 and difB>0) or (difW <= 0 and difB>0) or (difW < 0 and difB >= 0):
 				if fen1.split()[1] == "w":
-					frase_expl = frase_expl + "però, has restringit els teus moviments i has augmentat els del rival. "
+					frase_expl2 = frase_expl2 + "però, has restringit els teus moviments i has augmentat els del rival. "
 				else:
-					frase_expl = frase_expl + "a més, has aconseguit restringir els moviments del rival augmentant els teus. "
+					frase_expl2 = frase_expl2 + "a més, has aconseguit restringir els moviments del rival augmentant els teus. "
 
-			elif difW == 0:
-					frase_expl = frase_expl + "aquest moviment no afecta a la llibertat de moviment de la resta de peces. "
+			elif difW == 0 and difB == 0:
+					frase_expl2 = frase_expl2 + "aquest moviment no afecta a la llibertat de moviment de la resta de peces. "
 
 
 			if control:
-				frase_expl = frase_expl + "Ha empitjorat el control d'aquesta peça sobre el taulell, ara veu menys caselles"
+				frase_expl2 = frase_expl2 + "Ha empitjorat el control d'aquesta peça sobre el taulell, ara veu menys caselles"
 				if MLPcol>=0.5:
-					frase_expl = frase_expl + ", a més, està a una columna lliure."
+					frase_expl2 = frase_expl2 + ", a més, està a una columna lliure."
 				else:
-					frase_expl = frase_expl + "."
+					frase_expl2 = frase_expl2 + "."
 			
 			else:
-				frase_expl = frase_expl + "Ha millorat el control d'aquesta peça sobre el taulell, ara veu les mateixes o més caselles que abans"
+				frase_expl2 = frase_expl2 + "Ha millorat el control d'aquesta peça sobre el taulell, ara veu les mateixes o més caselles que abans"
 				if MLPcol>=0.5:
-					frase_expl = frase_expl + ", però, està a una columna lliure."
+					frase_expl2 = frase_expl2 + ", però, està a una columna lliure."
 				else:
-					frase_expl = frase_expl + "."
+					frase_expl2 = frase_expl2 + "."
 				
 			#fer servir control i columna a més de fer servir difW i difB
 			
-			return frase_expl, "Avaluació del moviment: " + eval, mate
-
-
-
-			
-
-
-
-			
+			return frase_expl,frase_expl2, "Avaluació del moviment: " + eval, mate		
 	
 	def convertTuple(self,Tuples):
 		fen1,fen2 = Tuples
@@ -606,4 +597,7 @@ class Explanations:
 		return arr1
 
 g = Explanations("./stockfish/stockfish-windows-2022-x86-64-avx2")
-print(g.explanations("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1","rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3 0 1"))
+exp = g.explanations("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1","rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3 0 1")
+print(exp[2])
+print(exp[0])
+print(exp[1])
