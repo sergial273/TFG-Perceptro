@@ -34,7 +34,6 @@ class Explanations:
 
 			return difW,difB
 
-
 	def explanations(self, fen1, fen2):
 			MLPexp = self.MLPexplanations(fen1,fen2)
 			if np.sum(MLPexp[:10] == 1) > 1 and np.sum(MLPexp[:10] == 0) == len(MLPexp[:10]) - 1 and np.sum(MLPexp[:10] == 1) > 1 and np.sum(MLPexp[22:25] == 1) == 1:
@@ -138,9 +137,9 @@ class Explanations:
 						else: frase_expl = frase_expl + " En general, aquest moviment empitjora la teva posició."
 
 			if onmogut != "exterior":
-				frase_expl2 = "La teva peça està ocupant el " + onmogut + ", "
+				frase_expl2 = "A part, la teva peça està ocupant el " + onmogut + ", "
 			else:
-				frase_expl2 = "La teva peça està ocupant l'" + onmogut + ", "
+				frase_expl2 = "A part, la teva peça està ocupant l'" + onmogut + ", "
 
 			if (difW > 0 and difB>0) or (difW >= 0 and difB>0) or (difW > 0 and difB>=0):
 				if difW > difB:
@@ -201,9 +200,11 @@ class Explanations:
 				else:
 					frase_expl2 = frase_expl2 + "."
 				
-			#fer servir control i columna a més de fer servir difW i difB
+			if not mate:
+				eval = "Avaluació del moviment: " + eval
+			else: eval = "Mat en: " + eval
 			
-			return frase_expl,frase_expl2, "Avaluació del moviment: " + eval, mate		
+			return frase_expl,frase_expl2, eval		
 	
 	def convertTuple(self,Tuples):
 		fen1,fen2 = Tuples
