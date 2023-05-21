@@ -84,7 +84,7 @@ class Explanations:
 
 			escac = MLPexp[22]
 			
-			onmogut = MLPexp[22:25]
+			onmogut = MLPexp[23:26]
 
 			if onmogut[0] == 1: onmogut = "centre"
 			elif onmogut[1] == 1: onmogut = "mig"
