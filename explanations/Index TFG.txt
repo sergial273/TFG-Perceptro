@@ -27,6 +27,8 @@ Tapa
 	4.2 Creació de la base de dades
 	4.3 Procediment de construcció, d'entrenament i validació del model
 
+5.
+
 Resultats i avaluació
 	
 Conclusions
