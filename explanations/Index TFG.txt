@@ -27,7 +27,21 @@ Tapa
 	4.2 Creació de la base de dades
 	4.3 Procediment de construcció, d'entrenament i validació del model
 
-5.
+5.Creació de la xarxa amb explicacions
+	5.1 Nou disseny plantejat
+	5.2 Procediment de construcció, d'entrenament i validació del model
+
+6.Ampliació dels algorismes i xarxes d'explicació
+	6.1 Nova xarxa d'explicacions
+	6.2 Algorisme per a extreure informació del taulell
+
+7. Construcció del programa final
+
+8. Creació de la GUI
+	8.1 Implementació del taulell
+	8.2 Implementació de la lògica de joc
+	8.3 Creació de funciosn extres
+	8.4 Implementació de l'explicació de moviments
 
 Resultats i avaluació
 	
