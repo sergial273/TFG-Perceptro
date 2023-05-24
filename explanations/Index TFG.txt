@@ -40,7 +40,7 @@ Tapa
 8. Creació de la GUI
 	8.1 Implementació del taulell
 	8.2 Implementació de la lògica de joc
-	8.3 Creació de funciosn extres
+	8.3 Creació de funcions extres
 	8.4 Implementació de l'explicació de moviments
 
 Resultats i avaluació
