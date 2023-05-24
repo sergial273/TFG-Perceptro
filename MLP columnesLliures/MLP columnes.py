@@ -147,6 +147,29 @@ def xarxa7():
     MLP.add(Dense(func[1], activation='sigmoid')) # output layer
     return MLP
 
+def xarxa8():
+    MLP = Sequential()
+    MLP.add(InputLayer(input_shape=(128, ))) # input layer
+    MLP.add(Dense(256, activation='sigmoid')) # hidden layer 1
+    MLP.add(Dense(128, activation='sigmoid')) # hidden layer 1
+    MLP.add(Dense(64, activation='sigmoid')) # hidden layer 2
+    MLP.add(Dense(32, activation='sigmoid')) # hidden layer 2
+    MLP.add(Dense(16, activation='sigmoid')) # hidden layer 2
+    MLP.add(Dense(func[1], activation='sigmoid')) # output layer
+    return MLP
+
+def xarxa9():
+    MLP = Sequential()
+    MLP.add(InputLayer(input_shape=(128, ))) # input layer
+    MLP.add(Dense(256, activation='sigmoid')) # hidden layer 1
+    MLP.add(Dense(128, activation='sigmoid')) # hidden layer 1
+    MLP.add(Dense(64, activation='sigmoid')) # hidden layer 2
+    MLP.add(Dense(32, activation='sigmoid')) # hidden layer 2
+    MLP.add(Dense(16, activation='sigmoid')) # hidden layer 2
+    MLP.add(Dense(8, activation='sigmoid')) # hidden layer 2
+    MLP.add(Dense(func[1], activation='sigmoid')) # output layer
+    return MLP
+
 def getTuples(numEvaluacions,numTests):
     # Abrir el archivo csv y leer los primeros 'numEvaluacions' valores
     with open(os.getcwd()+'\MLP moviments\PosicionsEvaluacions2.csv', 'r') as file:
@@ -219,7 +242,7 @@ def convertTuple(Tuples, func):
     return inputs,outputs
 
 evalutionFunctions = [(aCasellaLliure,1)]
-differentNetworks = [xarxa5] #[xarxa1,xarxa2,xarxa3,xarxa4,xarxa5,xarxa6,xarxa7]
+differentNetworks = [xarxa8,xarxa9] #[xarxa1,xarxa2,xarxa3,xarxa4,xarxa5,xarxa6,xarxa7,xarxa8, xarxa9]
 listOptimizers = ['Adam'] #['SGD','RMSprop','Adam','Adadelta','Adagrad','Adamax','Nadam','Ftrl']
 
 TrainingTuples,TestTuples = getTuples(numEvaluacions=2000000,numTests=100000)
@@ -258,14 +281,14 @@ for func in evalutionFunctions:
                                             batch_size=128,
                                             verbose=0)
 
-            """with open(os.getcwd()+'\MLP columnesLliures\\ValorsTest.txt', mode='a') as archivo:
+            with open(os.getcwd()+'\MLP columnesLliures\\ValorsTest.txt', mode='a') as archivo:
                 archivo.write('Xarxa, Funcio eval, Optimitzador: '+str(xarxa)+', '+str(func)+', '+str(optimizer)+'\n')
                 archivo.write('Train acc '+str(train_accuracy)+'\n')
                 archivo.write('Test acc '+str(test_acc)+'\n')
-                archivo.write("-" * 50+'\n')"""
+                archivo.write("-" * 50+'\n')
             
             # Guardar los pesos de la red en un archivo HDF5
-            MLP.save("modelMLPcolumnes.h5")
+            #MLP.save("modelMLPcolumnes.h5")
 
             
 
