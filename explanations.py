@@ -6,7 +6,7 @@ from stockfish import Stockfish
 class Explanations:
 
 	def __init__(self,stockfish):
-			self.stockfish = Stockfish(path="./stockfish/stockfish-windows-2022-x86-64-avx2")
+			self.stockfish = Stockfish(path=stockfish)
 
 	def MLPexplanations(self, fen1, fen2):
 			inputs = self.convertTuple((fen1,fen2))
