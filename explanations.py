@@ -6,7 +6,7 @@ from stockfish import Stockfish
 class Explanations:
 
 	def __init__(self,stockfish):
-			self.stockfish = Stockfish(path="./stockfish/stockfish-windows-2022-x86-64-avx2")
+			self.stockfish = Stockfish(path=stockfish)
 
 	def MLPexplanations(self, fen1, fen2):
 			inputs = self.convertTuple((fen1,fen2))
@@ -643,10 +643,3 @@ class Explanations:
 		arr1 = np.array(output_bin, dtype=float)
 
 		return arr1
-
-
-g = Explanations("./stockfish/stockfish-windows-2022-x86-64-avx2")
-exp = g.explanations("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1","rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3 0 1")
-print(exp[2])
-print(exp[0])
-print(exp[1])

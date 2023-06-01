@@ -1,2 +1,0 @@
-arreglar els index
-formatar tot el document com les instruccions
