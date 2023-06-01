@@ -25,4 +25,4 @@ In the project you can find different versions of the project and how they have 
 
 ## Author
 
-* Sergi Alberich Velasco
+Sergi Alberich Velasco
