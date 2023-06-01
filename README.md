@@ -24,3 +24,5 @@ In the project you can find different versions of the project and how they have 
 * If you want to execute and see the whole process of training, it's recommended to use a code editor.
 
 ## Author
+
+* Sergi Alberich Velasco
