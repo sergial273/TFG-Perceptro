@@ -12,17 +12,15 @@ In the project you can find different versions of the project and how they have 
 ### Dependencies
 
 * This project has been made with the latest versions of Python (3.11) and executed on Windows 10.
+* It uses and includes the latest version of [Stockfish](https://github.com/official-stockfish/Stockfish) up to date (v15.1). If you want to use any other version, just install it in the stockfish folder and update the main.py path.
 
-### Installing - POTSER STOCKFISH
+### Installing
 
 * To start using the program, simply download the project.
-* Any modifications needed to be made to files/folders
 
 ### Executing program
 
-* To use only the final and already trained version, just run the file.
+* To use only the final and already trained version, just run the main.py file.
 * If you want to execute and see the whole process of training, it's recommended to use a code editor.
 
 ## Author
-
-* Sergi Alberich Velasco
