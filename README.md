@@ -22,7 +22,7 @@ In the project you can find different versions of the project and how they have 
 
 * To use only the final and already trained version, just run the main.py file.
 * If you want to execute and see the whole process of training, it's recommended to use a code editor.
-* To use the implementations of this project with a GUI you can check thi [project](https://github.com/sergial273/TFG-MLPexplicacions-GUI).
+* To use the implementations of this project with a GUI, you can check this [project](https://github.com/sergial273/TFG-MLPexplicacions-GUI).
 
 ## Author
 
